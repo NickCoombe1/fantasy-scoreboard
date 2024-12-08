@@ -47,7 +47,7 @@ export function calculateAutoSubs(team: PlayerPick[]): PlayerPick[] {
       const eligibleSubs = benchPlayers.filter((benchPick) => {
         return (
           benchPick.position >= 12 && // Ensure the player is on the bench
-          benchPick.hasPlayed &&
+          (benchPick.hasPlayed || !benchPick.gameStatus.isFinished) &&
           !benchPick.isInjured
         );
       });
