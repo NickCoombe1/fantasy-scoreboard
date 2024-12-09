@@ -62,13 +62,13 @@ export default function ScoreBoard({
                 ))}
           </div>
           <div className="h-6 opacity-60 justify-start items-center gap-2 inline-flex">
-            <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
-              {`${!showBench ? "SHOW" : "HIDE"} BENCH`}
-            </div>
             <button
               onClick={() => setShowBench(!showBench)}
-              className="flex items-center justify-center gap-2 text-sm font-medium text-light-default dark:text-dark-default hover:underline"
+              className="flex items-center justify-center gap-2 text-sm font-medium text-light-default dark:text-dark-default"
             >
+              <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+                {`${!showBench ? "SHOW" : "HIDE"} BENCH`}
+              </div>
               <FontAwesomeIcon
                 icon={showBench ? faChevronUp : faChevronDown}
                 className={"text-light-default dark:text-dark-default"}
