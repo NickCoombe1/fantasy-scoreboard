@@ -4,11 +4,12 @@ import {
   faArrowRightArrowLeft,
   faPersonRunning,
   faAward,
-  faRectangleXmark,
   faChevronDown,
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { PlayerPick } from "@/app/models/playerPick";
+import RedCard from "@/app/components/svgs/redCard";
+import YellowCard from "@/app/components/svgs/yellowCard";
 
 type PlayerPickCardProps = {
   pick: PlayerPick;
@@ -58,11 +59,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             )}
           {pick.yellowCarded && (
             <div className="relative group">
-              <FontAwesomeIcon
-                icon={faRectangleXmark}
-                transform={{ rotate: 90 }}
-                className="text-yellow-400"
-              />
+              <YellowCard />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs bg-yellow-400 text-light-90 dark:text-dark-90 py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Yellow Card
               </span>
@@ -70,11 +67,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
           )}
           {pick.redCarded && (
             <div className="relative group">
-              <FontAwesomeIcon
-                icon={faRectangleXmark}
-                transform={{ rotate: 90 }}
-                className="text-red-500"
-              />
+              <RedCard />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs bg-red-500 text-light-90 dark:text-dark-90 py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Red Card
               </span>

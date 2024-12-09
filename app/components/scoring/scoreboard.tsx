@@ -49,7 +49,7 @@ export default function ScoreBoard({
             </div>
           </div>
         </div>
-        <div className="w-full p-6 md:p-8 border-white/50 dark:bg-white/5  rounded-2xl border  flex-col justify-start items-center gap-8 inline-flex">
+        <div className="w-full p-6 md:p-8 border-white/50 bg-white/70 dark:bg-white/5 rounded-2xl border  flex-col justify-start items-center gap-8 inline-flex">
           <div className="text-center text-light-60 dark:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-[0.675rem] tracking-tight md:leading-3 md:tracking-wide">
             Starting Players
           </div>
