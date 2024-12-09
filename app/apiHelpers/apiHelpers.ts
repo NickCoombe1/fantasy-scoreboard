@@ -3,6 +3,7 @@ import { LeagueData } from "@/app/models/league";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { Fixtures } from "@/app/models/fplFixtureResponse";
 import { FplBootstrapResponse } from "@/app/models/fplBootstrapResponse";
+import { PlayerDataResponse } from "@/app/api/fetchScoring";
 
 const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -47,6 +48,16 @@ export const fetchGameweekFixtureData = async (
 
 export const fetchBootStrap = async (): Promise<FplBootstrapResponse> => {
   const response = await fetch(`${baseUrl}/api/fetchBootStrap`);
+  if (response.ok) return response.json();
+  throw new Error("Failed to gameweek data");
+};
+
+export const fetchWeeklyScoringData = async (
+  gameweek: number,
+): Promise<PlayerDataResponse> => {
+  const response = await fetch(
+    `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
+  );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
 };
