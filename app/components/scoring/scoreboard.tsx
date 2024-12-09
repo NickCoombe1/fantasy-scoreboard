@@ -53,7 +53,6 @@ export default function ScoreBoard({
           <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
             Starting Players
           </div>
-
           <div className="self-stretch flex-col justify-start items-center flex">
             {startingPlayers &&
               startingPlayers
@@ -62,25 +61,30 @@ export default function ScoreBoard({
                   <PlayerPickCard key={pick.element} pick={pick} />
                 ))}
           </div>
-
-          <div className="mt-4">
+          <div className="h-6 opacity-60 justify-start items-center gap-2 inline-flex">
+            <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+              {`${!showBench ? "SHOW" : "HIDE"} BENCH`}
+            </div>
             <button
               onClick={() => setShowBench(!showBench)}
               className="flex items-center justify-center gap-2 text-sm font-medium text-light-default dark:text-dark-default hover:underline"
             >
-              <FontAwesomeIcon icon={showBench ? faChevronUp : faChevronDown} />
+              <FontAwesomeIcon
+                icon={showBench ? faChevronUp : faChevronDown}
+                className={"text-light-default dark:text-dark-default"}
+              />
             </button>
-            {showBench && (
-              <div className="mt-2 space-y-2">
-                {benchPlayers &&
-                  benchPlayers
-                    .sort((a, b) => a.position - b.position)
-                    .map((pick) => (
-                      <PlayerPickCard key={pick.element} pick={pick} />
-                    ))}
-              </div>
-            )}
-          </div>
+          </div>{" "}
+          {showBench && (
+            <div className="self-stretch flex-col justify-start items-center flex">
+              {benchPlayers &&
+                benchPlayers
+                  .sort((a, b) => a.position - b.position)
+                  .map((pick) => (
+                    <PlayerPickCard key={pick.element} pick={pick} />
+                  ))}
+            </div>
+          )}
         </div>{" "}
       </div>
     </div>

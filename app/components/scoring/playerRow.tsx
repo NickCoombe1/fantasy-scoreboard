@@ -93,10 +93,12 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
           >
             {pick.points}
           </span>
-          <FontAwesomeIcon
-            icon={isExpanded ? faChevronUp : faChevronDown}
-            className={"text-light-default dark:text-dark-default"}
-          />
+          <button>
+            <FontAwesomeIcon
+              icon={isExpanded ? faChevronUp : faChevronDown}
+              className={"text-light-default dark:text-dark-default"}
+            />
+          </button>
         </div>
       </div>{" "}
       {isExpanded && (
@@ -141,5 +143,3 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
 };
 
 export default PlayerPickCard;
-
-/* */
