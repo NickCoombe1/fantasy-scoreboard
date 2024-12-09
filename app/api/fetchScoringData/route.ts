@@ -101,7 +101,6 @@ function mapBootstrapData(
     const isInjured = playerInfo?.chance_of_playing_this_round == 0;
 
     const gameStatus = getGameStatus(playerInfo?.team, gameweekFixtureData);
-
     const hasPlayed = (playerData?.stats.minutes || 0) > 0;
     const fieldPosition = playerInfo?.element_type
       ? playerInfo?.element_type
@@ -132,26 +131,23 @@ function getGameStatus(
 ): {
   isFinished: boolean;
   isInProgress: boolean;
-  currentMinute: number | null;
 } {
   if (teamID) {
     for (const match of gameweekFixtureData) {
       if (match.team_a === teamID || match.team_h === teamID) {
         const isFinished = match.finished;
         const isInProgress = match.started && !match.finished;
-        const currentMinute = isInProgress ? match.minutes : null;
 
         return {
           isFinished,
           isInProgress,
-          currentMinute,
         };
       }
     }
   }
+  //This is set to true so the autosub logic subs the players. It's probably not the best idea to re-use isFinished for this. Should refactor in future.
   return {
-    isFinished: false,
+    isFinished: true,
     isInProgress: false,
-    currentMinute: null,
   };
 }

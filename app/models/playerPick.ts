@@ -20,6 +20,5 @@ export interface PlayerPick {
   gameStatus: {
     isFinished: boolean;
     isInProgress: boolean;
-    currentMinute: number | null;
   };
 }
