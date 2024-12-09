@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { fetchTeamData } from "../../api/fetchTeam";
 import { PlayerPick } from "../../models/playerPick";
 import { FplTeamPicksResponse } from "../../models/fplTeamPicksResponse";
 import {
   fetchBootStrap,
   fetchGameweekFixtureData,
   fetchWeeklyScoringData,
+  fetchWeeklyTeam,
 } from "@/app/apiHelpers/apiHelpers";
 import { Fixtures } from "@/app/models/fplFixtureResponse";
 import { calculateAutoSubs } from "@/app/apiHelpers/calculateAutoSubs";
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       await Promise.all([
         fetchBootStrap(),
         fetchWeeklyScoringData(gameweekNumber),
-        fetchTeamData(teamIDNumber, gameweekNumber),
+        fetchWeeklyTeam(teamIDNumber, gameweekNumber),
         fetchGameweekFixtureData(gameweekNumber),
       ]);
     const processedTeamData = await processTeamData(
