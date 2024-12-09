@@ -50,7 +50,7 @@ export const fetchGameweekFixtureData = async (
 export const fetchBootStrap = async (): Promise<FplBootstrapResponse> => {
   const response = await fetch(`${baseUrl}/api/fetchBootStrap`);
   if (response.ok) return response.json();
-  throw new Error("Failed to gameweek data");
+  throw new Error("Failed to bootstrap data");
 };
 
 export const fetchWeeklyScoringData = async (
@@ -60,7 +60,7 @@ export const fetchWeeklyScoringData = async (
     `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
   );
   if (response.ok) return response.json();
-  throw new Error("Failed to gameweek data");
+  throw new Error("Failed to weekly scoring data");
 };
 
 export const fetchWeeklyTeam = async (
