@@ -117,6 +117,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             </div>
             {pick &&
               pick.pointDetails &&
+              pick?.pointDetails[0] &&
               pick?.pointDetails[0][0]?.map((detail) => (
                 <>
                   <div
