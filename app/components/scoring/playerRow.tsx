@@ -24,7 +24,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
       onClick={toggleDetails}
     >
       <div className="self-stretch h-[27px] justify-between items-center inline-flex">
-        <div className="text-center text-light-90 dark:text-dark-90 text-lg font-medium font-roobert leading-none flex gap-2">
+        <div className="text-center text-light-90 dark:text-dark-90 text-base md:text-lg font-medium font-roobert leading-[.9rem] md:leading-none flex gap-2">
           {pick.name}
           {pick.willBeAutosubbed && (
             <div className="relative group">
@@ -83,7 +83,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
         </div>
         <div className="flex items-center gap-2">
           <span
-            className={`font-semibold ${
+            className={`text-center text-base md:text-lg font-medium font-roobert leading-[.9rem] md:leading-none ${
               pick.hasPlayed
                 ? pick.points > 0
                   ? "text-light-green dark:text-dark-green"
@@ -104,14 +104,14 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
       {isExpanded && (
         <div className="self-stretch px-6 py-2 bg-black/5 dark:bg-black/20 rounded-lg justify-between items-start inline-flex">
           <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-            <div className="self-stretch py-3 border-b border-[#040404]/20 dark:border-white/20 justify-center items-center gap-2.5 inline-flex">
-              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+            <div className="self-stretch py-4 md:py-3 border-b border-[#040404]/20 dark:border-white/20 justify-center items-center gap-2.5 inline-flex">
+              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-[.9rem] md:leading-3 md:tracking-wide">
                 Stat
               </div>
-              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-[.9rem] md:leading-3 md:tracking-wide">
                 Value
               </div>
-              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+              <div className="grow shrink basis-0 text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-[.9rem] md:leading-3 md:tracking-wide">
                 Points
               </div>
             </div>
@@ -121,15 +121,15 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
                 <>
                   <div
                     key={detail.name}
-                    className="self-stretch py-3 justify-start items-center gap-2.5 inline-flex"
+                    className="self-stretch py-3 justify-start items-center gap-2.5 inline-flex [&:not(:last-child)]:border-b border-[#040404]/20 dark:border-white/20"
                   >
-                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 tracking-tight">
+                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 md:tracking-wide">
                       {detail.name}
                     </div>
-                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 tracking-tight">
+                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 md:tracking-wide">
                       {detail.value}
                     </div>
-                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 tracking-tight">
+                    <div className="grow shrink basis-0 text-light-90 dark:text-dark-90 text-sm font-medium font-roobert leading-3 md:tracking-wide">
                       {detail.points}
                     </div>
                   </div>

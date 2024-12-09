@@ -24,7 +24,7 @@ export default function ScoreBoard({
   const benchPlayers = picks.filter((pick) => pick.isSub);
 
   return (
-    <div className="w-full md:w-1/2 flex-col justify-start items-center gap-20 inline-flex">
+    <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
       <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
         <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
           GAME WEEK
@@ -34,7 +34,7 @@ export default function ScoreBoard({
           {gameweekNumber}
         </div>
       </div>
-      <div className="self-stretch flex-col justify-start items-center gap-6 flex">
+      <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
         <div className="self-stretch justify-start items-center gap-4 md:gap-6 inline-flex">
           <div className="grow shrink basis-0 h-[3.375rem] md:h-[4.4rem] px-10 py-5 bg-white/70 dark:bg-white/5 rounded-2xl border border-white/50 justify-center items-center flex">
             <div className="text-center  dark:text-dark-90 text-light-90 text-base md:text-[1.625rem] font-semibold font-roobert leading-[.25rem] md:leading-normal">
@@ -49,8 +49,8 @@ export default function ScoreBoard({
             </div>
           </div>
         </div>
-        <div className="w-full p-8 bg-white/70 dark:bg-white/5  rounded-2xl border border-white flex-col justify-start items-center gap-8 inline-flex">
-          <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+        <div className="w-full p-6 md:p-8 border-white/50 dark:bg-white/5  rounded-2xl border  flex-col justify-start items-center gap-8 inline-flex">
+          <div className="text-center text-light-60 dark:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-[0.675rem] tracking-tight md:leading-3 md:tracking-wide">
             Starting Players
           </div>
           <div className="self-stretch flex-col justify-start items-center flex">
