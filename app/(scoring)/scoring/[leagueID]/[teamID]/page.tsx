@@ -76,27 +76,25 @@ export default function ScoringPage({
     );
   }
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col gap-6">
+    <div className="min-h-screen flex flex-col gap-6">
       {teamScoringData && (
         <>
-          <div className="flex flex-col items-center gap-4">
-            <h1 className="text-3xl font-bold">
-              Gameweek {gameweekInfo?.current_event}
-            </h1>
-          </div>
-          <div className="flex flex-col lg:flex-row justify-center gap-8">
-            <div className="w-full max-w-md">
-              <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md ">
-                <ScoreBoard
-                  picks={teamScoringData.picks}
-                  team={leagueData?.league_entries.find(
-                    (team) => team.entry_id == teamID,
-                  )}
-                  totalPoints={teamScoringData.totalPoints}
-                />
-              </div>{" "}
+          <div className="h-[137px] flex-col justify-start items-center gap-4 flex">
+            <div className="self-stretch text-center dark:text-dark-90 text-light-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+              GAME WEEK
+            </div>
+            <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-9xl font-medium font-roobert leading-[6.75rem]">
+              {" "}
+              {gameweekInfo?.current_event}
             </div>
           </div>
+          <ScoreBoard
+            picks={teamScoringData.picks}
+            team={leagueData?.league_entries.find(
+              (team) => team.entry_id == teamID,
+            )}
+            totalPoints={teamScoringData.totalPoints}
+          />
         </>
       )}
     </div>
