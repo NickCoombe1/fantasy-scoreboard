@@ -79,11 +79,11 @@ export default function ScoringPage({
     <div className="min-h-screen flex flex-col gap-6">
       {teamScoringData && (
         <>
-          <div className="h-[137px] flex-col justify-start items-center gap-4 flex">
-            <div className="self-stretch text-center dark:text-dark-90 text-light-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+          <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+            <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
               GAME WEEK
             </div>
-            <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-9xl font-medium font-roobert leading-[6.75rem]">
+            <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
               {" "}
               {gameweekInfo?.current_event}
             </div>
