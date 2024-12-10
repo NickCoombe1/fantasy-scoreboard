@@ -76,14 +76,6 @@ export default function MatchupPage({
     fetchData();
   }, [leagueID, teamID]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -93,41 +85,43 @@ export default function MatchupPage({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-secondary text-gray-900 dark:text-gray-100 flex flex-col gap-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold">
-          Gameweek {gameweekInfo?.current_event}
-        </h1>
-      </div>
-      <div className="flex flex-col justify-between items-center m-auto text-center gap-4 mb-2">
-        <h2 className="text-xl font-bold">
-          {team?.entry_name} v {opponent?.entry_name}
-        </h2>
-        <p className="text-5xl font-bold mt-2">
-          {teamScoring?.totalPoints || 0} v {opponentScoring?.totalPoints || 0}
-        </p>
-      </div>
+    <div className="min-h-[80vh] flex flex-col items-center p-6">
+      <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
+        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+          {gameweekInfo && (
+            <>
+              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
+                GAME WEEK
+              </div>
+              <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
+                {gameweekInfo?.current_event}
+              </div>
+            </>
+          )}
+        </div>
+        {loading && <LoadingSpinner />}
 
-      <div className="flex flex-col lg:flex-row justify-center gap-2 lg:gap-8">
-        <div className="w-full max-w-md">
-          <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
-            <ScoreBoard
-              picks={teamScoring?.picks || []}
-              team={team || undefined}
-              totalPoints={teamScoring?.totalPoints || 0}
-            />
+        <div className="flex flex-col lg:flex-row justify-center gap-2 lg:gap-8">
+          <div className="w-full max-w-md">
+            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
+              <ScoreBoard
+                picks={teamScoring?.picks || []}
+                team={team || undefined}
+                totalPoints={teamScoring?.totalPoints || 0}
+              />
+            </div>
+          </div>
+          <div className="w-full max-w-md">
+            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
+              <ScoreBoard
+                picks={opponentScoring?.picks || []}
+                team={opponent || undefined}
+                totalPoints={opponentScoring?.totalPoints || 0}
+              />{" "}
+            </div>
           </div>
         </div>
-        <div className="w-full max-w-md">
-          <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
-            <ScoreBoard
-              picks={opponentScoring?.picks || []}
-              team={opponent || undefined}
-              totalPoints={opponentScoring?.totalPoints || 0}
-            />{" "}
-          </div>
-        </div>
-      </div>
+      </div>{" "}
     </div>
   );
 }

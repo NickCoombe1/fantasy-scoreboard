@@ -97,8 +97,7 @@ export default function LeaguePage({
             </>
           )}
         </div>
-
-        <div className="w-full ">{loading && <LoadingSpinner />}</div>
+        {loading && <LoadingSpinner />}
       </div>
     </div>
   );

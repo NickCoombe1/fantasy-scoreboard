@@ -11,6 +11,7 @@ import {
   fetchLeagueData,
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
+import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 
 export default function ScoringPage({
   params,
@@ -78,6 +79,9 @@ export default function ScoringPage({
     fetchTeamScoring();
   }, [teamID, gameweekInfo]);
 
+  const team = leagueData?.league_entries.find(
+    (team) => team.entry_id === teamID,
+  );
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -101,14 +105,21 @@ export default function ScoringPage({
             </>
           )}
         </div>
-        {teamScoringData ? (
-          <ScoreBoard
-            picks={teamScoringData.picks}
-            team={leagueData?.league_entries.find(
-              (team) => team.entry_id === teamID,
-            )}
-            totalPoints={teamScoringData.totalPoints}
-          />
+        {teamScoringData && team ? (
+          <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
+            <ScoreBoardHeader
+              totalPoints={teamScoringData?.totalPoints || 0}
+              teamName={team?.entry_name}
+              alignPoints={"right"}
+            />
+            <ScoreBoard
+              picks={teamScoringData.picks}
+              team={leagueData?.league_entries.find(
+                (team) => team.entry_id === teamID,
+              )}
+              totalPoints={teamScoringData.totalPoints}
+            />
+          </div>
         ) : (
           loadingTeamData && <LoadingSpinner />
         )}
