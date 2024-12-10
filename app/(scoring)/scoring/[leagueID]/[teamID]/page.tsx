@@ -114,10 +114,6 @@ export default function ScoringPage({
             />
             <ScoreBoard
               picks={teamScoringData.picks}
-              team={leagueData?.league_entries.find(
-                (team) => team.entry_id === teamID,
-              )}
-              totalPoints={teamScoringData.totalPoints}
             />
           </div>
         ) : (

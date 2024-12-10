@@ -7,15 +7,9 @@ import PlayerPickCard from "@/app/components/scoring/playerRow";
 
 type ScoreBoardProps = {
   picks: PlayerPick[];
-  team: LeagueEntry | undefined;
-  totalPoints: number;
 };
 
-export default function ScoreBoard({
-  picks,
-  team,
-  totalPoints,
-}: ScoreBoardProps) {
+export default function ScoreBoard({ picks }: ScoreBoardProps) {
   const [showBench, setShowBench] = useState(false);
 
   const startingPlayers = picks.filter((pick) => !pick.isSub);

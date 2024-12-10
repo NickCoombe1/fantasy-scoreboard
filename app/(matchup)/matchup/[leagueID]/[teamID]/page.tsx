@@ -11,6 +11,7 @@ import {
   fetchLeagueData,
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
+import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 
 export default function MatchupPage({
   params,
@@ -86,7 +87,7 @@ export default function MatchupPage({
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
-      <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
+      <div className="w-full md:w-2/3 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
         <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
           {gameweekInfo && (
             <>
@@ -100,27 +101,28 @@ export default function MatchupPage({
           )}
         </div>
         {loading && <LoadingSpinner />}
-
-        <div className="flex flex-col lg:flex-row justify-center gap-2 lg:gap-8">
-          <div className="w-full max-w-md">
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
-              <ScoreBoard
-                picks={teamScoring?.picks || []}
-                team={team || undefined}
-                totalPoints={teamScoring?.totalPoints || 0}
+        {team && opponent && teamScoring && opponentScoring && (
+          <div className="flex justify-center gap-6 w-full">
+            <div className="flex flex-col items-start gap-6 w-full">
+              {" "}
+              <ScoreBoardHeader
+                teamName={team?.entry_name}
+                totalPoints={teamScoring?.totalPoints}
+                alignPoints={"right"}
               />
+              <ScoreBoard picks={teamScoring?.picks || []} />
+            </div>
+            <div className="flex flex-col  items-start gap-6 w-full">
+              {" "}
+              <ScoreBoardHeader
+                teamName={opponent?.entry_name}
+                totalPoints={opponentScoring?.totalPoints}
+                alignPoints={"left"}
+              />
+              <ScoreBoard picks={opponentScoring?.picks || []} />{" "}
             </div>
           </div>
-          <div className="w-full max-w-md">
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
-              <ScoreBoard
-                picks={opponentScoring?.picks || []}
-                team={opponent || undefined}
-                totalPoints={opponentScoring?.totalPoints || 0}
-              />{" "}
-            </div>
-          </div>
-        </div>
+        )}
       </div>{" "}
     </div>
   );
