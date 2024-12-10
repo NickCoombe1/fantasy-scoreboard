@@ -94,17 +94,14 @@ export default function LeaguePage({
     <div className="min-h-screen text-gray-900 dark:text-gray-100 flex flex-col gap-6">
       {teamsScoringData && (
         <>
-          <div className="flex items-center justify-center gap-4 w-full">
-            <h1 className="text-3xl font-bold">
-              Gameweek {gameweekInfo?.current_event}
-            </h1>
-            <button
-              onClick={handleRefresh}
-              className="top-4 right-4 p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition"
-              aria-label="Refresh"
-            >
-              <FontAwesomeIcon icon={faSyncAlt} />
-            </button>
+          <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+            <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
+              GAME WEEK
+            </div>
+            <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
+              {" "}
+              {gameweekInfo?.current_event}
+            </div>
           </div>
 
           <div className="w-full ">
@@ -136,23 +133,7 @@ export default function LeaguePage({
                     setError("An unexpected error occurred.");
                     return;
                   }
-                  return (
-                    <div key={index} className={"mb-2"}>
-                      <MatchUpCard
-                        key={index}
-                        team1={{
-                          picks: team1Data.picks,
-                          team: team1,
-                          totalPoints: team1Data.totalPoints,
-                        }}
-                        team2={{
-                          picks: team2Data.picks,
-                          team: team2,
-                          totalPoints: team2Data.totalPoints,
-                        }}
-                      />
-                    </div>
-                  );
+                  return <div key={index} className={"mb-2"}></div>;
                 })}
           </div>
         </>
