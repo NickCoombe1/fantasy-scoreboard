@@ -102,23 +102,46 @@ export default function MatchupPage({
         </div>
         {loading && <LoadingSpinner />}
         {team && opponent && teamScoring && opponentScoring && (
-          <div className="flex justify-center gap-6 w-full">
-            <div className="flex flex-col items-start gap-6 w-full">
-              {" "}
+          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full">
+            <div className="md:hidden w-full flex justify-between">
               <ScoreBoardHeader
                 teamName={team?.entry_name}
                 totalPoints={teamScoring?.totalPoints}
                 alignPoints={"right"}
-              />
-              <ScoreBoard picks={teamScoring?.picks || []} />
-            </div>
-            <div className="flex flex-col  items-start gap-6 w-full">
-              {" "}
+              />{" "}
               <ScoreBoardHeader
                 teamName={opponent?.entry_name}
                 totalPoints={opponentScoring?.totalPoints}
                 alignPoints={"left"}
-              />
+              />{" "}
+            </div>
+            <div className="flex flex-col items-start gap-6 w-full">
+              {" "}
+              <div className="hidden md:block w-full">
+                <ScoreBoardHeader
+                  teamName={team?.entry_name}
+                  totalPoints={teamScoring?.totalPoints}
+                  alignPoints={"right"}
+                />
+              </div>
+              <ScoreBoard picks={teamScoring?.picks || []} />
+            </div>
+            <div
+              className={
+                "dark:text-dark-90 text-light-90 font-semibold text-[1.625rem] leading-normal mt-4 hidden md:block"
+              }
+            >
+              V
+            </div>
+            <div className="flex flex-col  items-start gap-6 w-full">
+              {" "}
+              <div className="hidden md:block w-full">
+                <ScoreBoardHeader
+                  teamName={opponent?.entry_name}
+                  totalPoints={opponentScoring?.totalPoints}
+                  alignPoints={"left"}
+                />{" "}
+              </div>
               <ScoreBoard picks={opponentScoring?.picks || []} />{" "}
             </div>
           </div>
