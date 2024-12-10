@@ -82,62 +82,24 @@ export default function LeaguePage({
     );
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen text-gray-900 dark:text-gray-100 flex flex-col gap-6">
-      {teamsScoringData && (
-        <>
-          <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
-            <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
-              GAME WEEK
-            </div>
-            <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
-              {" "}
-              {gameweekInfo?.current_event}
-            </div>
-          </div>
+    <div className="min-h-[80vh] flex flex-col items-center p-6">
+      <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
+        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+          {gameweekInfo && (
+            <>
+              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
+                GAME WEEK
+              </div>
+              <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
+                {gameweekInfo?.current_event}
+              </div>
+            </>
+          )}
+        </div>
 
-          <div className="w-full ">
-            {leagueData &&
-              leagueData.matches
-                .filter((x) => x.event == gameweekInfo?.current_event)
-                .map((match, index) => {
-                  const team1 = leagueData?.league_entries.find(
-                    (team) =>
-                      team.id == match.league_entry_1 &&
-                      match.event == gameweekInfo?.current_event,
-                  );
-                  const team2 = leagueData?.league_entries.find(
-                    (team) =>
-                      team.id == match.league_entry_2 &&
-                      match.event == gameweekInfo?.current_event,
-                  );
-                  if (!team1 || !team2) {
-                    setError("An unexpected error occurred.");
-                    return;
-                  }
-                  const team1Data = Object.entries(teamsScoringData).find(
-                    ([key]) => Number(key) == match.league_entry_1,
-                  )?.[1];
-                  const team2Data = Object.entries(teamsScoringData).find(
-                    ([key]) => Number(key) == match.league_entry_2,
-                  )?.[1];
-                  if (!team1Data || !team2Data) {
-                    setError("An unexpected error occurred.");
-                    return;
-                  }
-                  return <div key={index} className={"mb-2"}></div>;
-                })}
-          </div>
-        </>
-      )}
+        <div className="w-full ">{loading && <LoadingSpinner />}</div>
+      </div>
     </div>
   );
 }
