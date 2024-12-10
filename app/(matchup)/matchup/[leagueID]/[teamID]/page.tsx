@@ -103,18 +103,27 @@ export default function MatchupPage({
         {loading && <LoadingSpinner />}
         {team && opponent && teamScoring && opponentScoring && (
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full">
-            <div className="md:hidden w-full flex justify-between">
+            {/* Mobile view */}
+            <div className="md:hidden w-full flex gap justify-center gap-1">
               <ScoreBoardHeader
                 teamName={team?.entry_name}
                 totalPoints={teamScoring?.totalPoints}
                 alignPoints={"right"}
               />{" "}
+              <div
+                className={
+                  "dark:text-dark-90 text-light-90 font-semibold text-base leading-[.875rem] mt-5 md:hidden"
+                }
+              >
+                V
+              </div>
               <ScoreBoardHeader
                 teamName={opponent?.entry_name}
                 totalPoints={opponentScoring?.totalPoints}
                 alignPoints={"left"}
               />{" "}
             </div>
+            {/* Desktop view */}
             <div className="flex flex-col items-start gap-6 w-full">
               {" "}
               <div className="hidden md:block w-full">
