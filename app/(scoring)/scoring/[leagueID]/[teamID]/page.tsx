@@ -115,7 +115,7 @@ export default function ScoringPage({
             </Tab>
           </TabList>{" "}
         </div>
-        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex mt-4">
           {gameweekInfo && (
             <>
               <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
