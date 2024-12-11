@@ -19,7 +19,6 @@ export default function ScoringPage() {
     leagueID: string;
     teamID: string;
   };
-
   const leagueIDNumber = Number(leagueID);
   const teamIDNumber = Number(teamID);
   const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
@@ -95,18 +94,6 @@ export default function ScoringPage() {
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
       <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
-        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
-          {gameweekInfo && (
-            <>
-              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
-                GAME WEEK
-              </div>
-              <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
-                {gameweekInfo?.current_event}
-              </div>
-            </>
-          )}
-        </div>
         {teamScoringData && team ? (
           <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
             <ScoreBoardHeader

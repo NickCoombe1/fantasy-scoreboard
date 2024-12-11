@@ -10,7 +10,8 @@ import {
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import Scoring from "@/app/components/scoring/page";
+import Scoring from "@/app/components/scoring/pages/scoringPage";
+import MatchupPage from "@/app/components/scoring/pages/matchupPage";
 
 export default function ScoringPage({
   params,
@@ -91,7 +92,7 @@ export default function ScoringPage({
 
   return (
     <div className={"min-h-[80vh]"}>
-      <TabGroup className={"flex flex-col items-center"}>
+      <TabGroup className={"flex flex-col items-center  gap-4"}>
         <div className="w-full md:w-auto md:px-1 pt-8 md:pb-1 px-1 pb-1 bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
           <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal">
             Hawcey Gang
@@ -114,11 +115,25 @@ export default function ScoringPage({
             </Tab>
           </TabList>{" "}
         </div>
+        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
+          {gameweekInfo && (
+            <>
+              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
+                GAME WEEK
+              </div>
+              <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
+                {gameweekInfo?.current_event}
+              </div>
+            </>
+          )}
+        </div>
         <TabPanels className={"w-full"}>
           <TabPanel>
             <Scoring />
           </TabPanel>
-          <TabPanel>Content 2</TabPanel>
+          <TabPanel>
+            <MatchupPage />
+          </TabPanel>
           <TabPanel>Content 3</TabPanel>
         </TabPanels>
       </TabGroup>

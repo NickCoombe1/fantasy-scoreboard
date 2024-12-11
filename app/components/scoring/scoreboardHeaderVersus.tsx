@@ -4,7 +4,7 @@ type ScoreBoardProps = {
   alignPoints: "left" | "right";
 };
 
-export default function ScoreBoardHeader({
+export default function ScoreboardHeaderVersus({
   teamName,
   totalPoints,
   alignPoints,
