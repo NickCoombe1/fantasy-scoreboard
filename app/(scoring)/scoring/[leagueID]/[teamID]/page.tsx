@@ -92,7 +92,7 @@ export default function ScoringPage({
   return (
     <div className={"min-h-[80vh] flex flex-col items-center"}>
       <TabGroup className={"w-full md:w-auto"}>
-        <div className="w-full md:px-1 pt-8 md:pb-1 bg-transparent md:bg-black/5 md:dark:bg-black/20 rounded-lg md:shadow md:backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
+        <div className="w-full md:px-1 pt-8 md:pb-1 bg-black/5 dark:bg-black/20 rounded-lg shadow backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
           <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal">
             Hawcey Gang
           </div>

@@ -12,12 +12,16 @@ import {
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
 import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
+import { useParams } from "next/navigation";
 
-interface ScoringPageProps {
-  leagueID: number;
-  teamID: number;
-}
-export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
+export default function ScoringPage() {
+  const { leagueID, teamID } = useParams() as {
+    leagueID: string;
+    teamID: string;
+  };
+
+  const leagueIDNumber = Number(leagueID);
+  const teamIDNumber = Number(teamID);
   const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
   const [leagueData, setLeagueData] = useState<LeagueData | null>(null);
   const [teamScoringData, setTeamScoringData] = useState<ScoringData | null>(
@@ -35,7 +39,7 @@ export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
         }
         setGameweekInfo(gameweekResponse);
 
-        const leagueResponse = await fetchLeagueData(leagueID);
+        const leagueResponse = await fetchLeagueData(leagueIDNumber);
         if (!leagueResponse) {
           new Error("Failed to load league data");
         }
@@ -57,7 +61,7 @@ export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
       try {
         setLoadingTeamData(true);
         const teamResponse = await fetchTeamDetails(
-          teamID,
+          teamIDNumber,
           gameweekInfo.current_event,
         );
         if (!teamResponse) {
@@ -78,7 +82,7 @@ export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
   }, [teamID, gameweekInfo]);
 
   const team = leagueData?.league_entries.find(
-    (team) => team.entry_id === teamID,
+    (team) => team.entry_id === teamIDNumber,
   );
   if (error) {
     return (
@@ -108,7 +112,6 @@ export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
             <ScoreBoardHeader
               totalPoints={teamScoringData?.totalPoints || 0}
               teamName={team?.entry_name}
-              alignPoints={"right"}
             />
             <ScoreBoard picks={teamScoringData.picks} />
           </div>

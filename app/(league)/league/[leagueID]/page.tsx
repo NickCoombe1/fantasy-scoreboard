@@ -10,7 +10,6 @@ import {
   fetchLeagueData,
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
-import HeaderTabs from "@/app/components/common/headerTabs";
 
 export default function LeaguePage({
   params,
@@ -82,7 +81,6 @@ export default function LeaguePage({
 
   return (
     <div className={"min-h-[80vh] flex flex-col items-center"}>
-      <HeaderTabs />
       <div className="p-6">
         {/* <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
         <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
