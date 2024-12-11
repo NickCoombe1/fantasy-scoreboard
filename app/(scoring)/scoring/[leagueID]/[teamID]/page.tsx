@@ -12,6 +12,7 @@ import {
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import Scoring from "@/app/components/scoring/pages/scoringPage";
 import MatchupPage from "@/app/components/scoring/pages/matchupPage";
+import LeaguePage from "@/app/components/scoring/pages/leaguePage";
 
 export default function ScoringPage({
   params,
@@ -134,7 +135,9 @@ export default function ScoringPage({
           <TabPanel>
             <MatchupPage />
           </TabPanel>
-          <TabPanel>Content 3</TabPanel>
+          <TabPanel>
+            <LeaguePage />
+          </TabPanel>
         </TabPanels>
       </TabGroup>
     </div>

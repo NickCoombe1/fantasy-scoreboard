@@ -11,7 +11,6 @@ import {
   fetchLeagueData,
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
-import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 import { useParams } from "next/navigation";
 import ScoreboardHeaderVersus from "@/app/components/scoring/scoreboardHeaderVersus";
 
@@ -121,9 +120,10 @@ export default function MatchupPage() {
             <div className="flex flex-col items-start gap-6 w-full">
               {" "}
               <div className="hidden md:block w-full">
-                <ScoreBoardHeader
+                <ScoreboardHeaderVersus
                   teamName={team?.entry_name}
                   totalPoints={teamScoring?.totalPoints}
+                  alignPoints={"right"}
                 />
               </div>
               <ScoreBoard picks={teamScoring?.picks || []} />
@@ -138,9 +138,10 @@ export default function MatchupPage() {
             <div className="flex flex-col  items-start gap-6 w-full">
               {" "}
               <div className="hidden md:block w-full">
-                <ScoreBoardHeader
+                <ScoreboardHeaderVersus
                   teamName={opponent?.entry_name}
                   totalPoints={opponentScoring?.totalPoints}
+                  alignPoints={"left"}
                 />{" "}
               </div>
               <ScoreBoard picks={opponentScoring?.picks || []} />{" "}
