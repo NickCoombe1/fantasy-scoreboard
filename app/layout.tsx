@@ -54,10 +54,11 @@ export default function Layout({
 }>) {
   const cookieStore = cookies();
   const theme = cookieStore.get("theme")?.value || "light";
+  //TODO: Add hidden back to line 61
   return (
     <html
       lang="en"
-      className={`${theme} ${roobert.variable} ${roobertMono.variable} ${hexaframeCF.variable} hidden`}
+      className={`${theme} ${roobert.variable} ${roobertMono.variable} ${hexaframeCF.variable} `}
     >
       <head title={metadata.title?.toString()}>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

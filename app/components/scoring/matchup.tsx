@@ -69,17 +69,9 @@ export default function MatchUpCard({ team1, team2 }: MatchUpCardProps) {
         </button>
         {isScoreboardVisible &&
           (showTeam1 ? (
-            <Scoreboard
-              picks={team1.picks}
-              team={team1.team}
-              totalPoints={team1.totalPoints}
-            />
+            <Scoreboard picks={team1.picks} />
           ) : (
-            <Scoreboard
-              picks={team2.picks}
-              team={team2.team}
-              totalPoints={team2.totalPoints}
-            />
+            <Scoreboard picks={team2.picks} />
           ))}
       </div>
     </div>

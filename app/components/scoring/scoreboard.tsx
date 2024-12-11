@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { PlayerPick } from "@/app/models/playerPick";
-import { LeagueEntry } from "@/app/models/league";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import PlayerPickCard from "@/app/components/scoring/playerRow";
