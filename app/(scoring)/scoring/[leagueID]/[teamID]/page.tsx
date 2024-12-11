@@ -91,23 +91,23 @@ export default function ScoringPage({
 
   return (
     <div className={"min-h-[80vh] flex flex-col items-center"}>
-      <TabGroup className={"w-full"}>
-        <div className="w-full md:px-1 pt-8 md:pb-1 bg-black/5 dark:bg-black/20 rounded-b-lg shadow backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
+      <TabGroup className={"w-full md:w-auto"}>
+        <div className="w-full md:px-1 pt-8 md:pb-1 px-1 bg-black/5 dark:bg-black/20 rounded-b-lg shadow backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
           <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal">
             Hawcey Gang
           </div>
-          <TabList className="w-full justify-evenly items-center gap-3.5 md:gap-2 inline-flex h-[41px]">
-            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
+          <TabList className="w-full items-center justify-center gap-2 md:gap-2 inline-flex h-[41px] mx-8">
+            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
               <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
-                scoring
+                MY scoring
               </div>
             </Tab>
-            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white  data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
+            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white  data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
               <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
                 Matchup
               </div>
             </Tab>
-            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
+            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
               <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
                 League Scoring
               </div>
