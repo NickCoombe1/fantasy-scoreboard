@@ -1,87 +1,27 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import ScoreBoard from "@/app/components/scoring/scoreboard";
 import { LeagueData } from "@/app/models/league";
-import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
-import {
-  fetchGameWeekDetails,
-  fetchLeagueData,
-  fetchTeamDetails,
-} from "@/app/apiHelpers/apiHelpers";
 import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 import { useParams } from "next/navigation";
 
-export default function ScoringPage() {
-  const { leagueID, teamID } = useParams() as {
-    leagueID: string;
-    teamID: string;
-  };
-  const leagueIDNumber = Number(leagueID);
-  const teamIDNumber = Number(teamID);
-  const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
-  const [leagueData, setLeagueData] = useState<LeagueData | null>(null);
-  const [teamScoringData, setTeamScoringData] = useState<ScoringData | null>(
-    null,
-  );
-  const [loadingTeamData, setLoadingTeamData] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const fetchGameWeekAndLeague = async () => {
-      try {
-        const gameweekResponse = await fetchGameWeekDetails();
-        if (!gameweekResponse) {
-          new Error("Failed to load gameweek data");
-        }
-        setGameweekInfo(gameweekResponse);
-
-        const leagueResponse = await fetchLeagueData(leagueIDNumber);
-        if (!leagueResponse) {
-          new Error("Failed to load league data");
-        }
-        setLeagueData(leagueResponse);
-      } catch (error) {
-        console.error("Error fetching gameweek or league data:", error);
-        setError("An unexpected error occurred while fetching data.");
-      } finally {
-      }
-    };
-
-    fetchGameWeekAndLeague();
-  }, [leagueID]);
-
-  useEffect(() => {
-    const fetchTeamScoring = async () => {
-      if (!gameweekInfo?.current_event) return;
-
-      try {
-        setLoadingTeamData(true);
-        const teamResponse = await fetchTeamDetails(
-          teamIDNumber,
-          gameweekInfo.current_event,
-        );
-        if (!teamResponse) {
-          new Error("Failed to load team scoring data");
-        }
-        setTeamScoringData(teamResponse);
-      } catch (error) {
-        console.error("Error fetching team scoring data:", error);
-        setError(
-          "An unexpected error occurred while fetching team scoring data.",
-        );
-      } finally {
-        setLoadingTeamData(false);
-      }
-    };
-
-    fetchTeamScoring();
-  }, [teamID, gameweekInfo]);
-
+interface ScoringPageProps {
+  leagueData: LeagueData;
+  teamScoringData: ScoringData;
+  loading: boolean;
+  error: string;
+}
+export default function ScoringPage({
+  leagueData,
+  teamScoringData,
+  loading,
+  error,
+}: ScoringPageProps) {
+  const { teamID } = useParams() as { teamID: string };
   const team = leagueData?.league_entries.find(
-    (team) => team.entry_id === teamIDNumber,
+    (team) => team.entry_id === Number(teamID),
   );
   if (error) {
     return (
@@ -94,17 +34,16 @@ export default function ScoringPage() {
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
       <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
-        {teamScoringData && team ? (
-          <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
+        <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
+          {team && (
             <ScoreBoardHeader
               totalPoints={teamScoringData?.totalPoints || 0}
               teamName={team?.entry_name}
             />
-            <ScoreBoard picks={teamScoringData.picks} />
-          </div>
-        ) : (
-          loadingTeamData && <LoadingSpinner />
-        )}
+          )}
+          <ScoreBoard picks={teamScoringData.picks} />
+        </div>
+        {loading && <LoadingSpinner />}
       </div>
     </div>
   );

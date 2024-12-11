@@ -26,7 +26,7 @@ export default function ScoringPage({
   const [teamScoringData, setTeamScoringData] = useState<ScoringData | null>(
     null,
   );
-  const [loadingTeamData, setLoadingTeamData] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function ScoringPage({
       if (!gameweekInfo?.current_event) return;
 
       try {
-        setLoadingTeamData(true);
+        setLoading(true);
         const teamResponse = await fetchTeamDetails(
           teamID,
           gameweekInfo.current_event,
@@ -73,16 +73,13 @@ export default function ScoringPage({
           "An unexpected error occurred while fetching team scoring data.",
         );
       } finally {
-        setLoadingTeamData(false);
+        setLoading(false);
       }
     };
 
     fetchTeamScoring();
   }, [teamID, gameweekInfo]);
 
-  const team = leagueData?.league_entries.find(
-    (team) => team.entry_id === teamID,
-  );
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -129,15 +126,24 @@ export default function ScoringPage({
           )}
         </div>
         <TabPanels className={"w-full"}>
-          <TabPanel>
-            <Scoring />
-          </TabPanel>
-          <TabPanel>
-            <MatchupPage />
-          </TabPanel>
-          <TabPanel>
-            <LeaguePage />
-          </TabPanel>
+          {leagueData && teamScoringData && (
+            <>
+              <TabPanel>
+                <Scoring
+                  leagueData={leagueData}
+                  teamScoringData={teamScoringData}
+                  loading={loading}
+                  error={error}
+                />
+              </TabPanel>
+              <TabPanel>
+                <MatchupPage />
+              </TabPanel>
+              <TabPanel>
+                <LeaguePage />
+              </TabPanel>
+            </>
+          )}
         </TabPanels>
       </TabGroup>
     </div>

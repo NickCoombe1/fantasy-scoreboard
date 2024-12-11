@@ -15,12 +15,10 @@ import { useParams } from "next/navigation";
 import Matchup from "@/app/components/scoring/matchup";
 
 export default function LeaguePage() {
-  const { leagueID, teamID } = useParams() as {
+  const { leagueID } = useParams() as {
     leagueID: string;
-    teamID: string;
   };
   const leagueIDNumber = Number(leagueID);
-  const teamIDNumber = Number(teamID);
   const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
   const [leagueData, setLeagueData] = useState<LeagueData | null>(null);
   const [teamsScoringData, setTeamsScoringData] = useState<Record<
