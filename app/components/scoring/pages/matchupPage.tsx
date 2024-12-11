@@ -5,102 +5,81 @@ import ScoreBoard from "@/app/components/scoring/scoreboard";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import { LeagueData, LeagueEntry } from "@/app/models/league";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
-import { GameStatusData } from "@/app/models/game";
-import {
-  fetchGameWeekDetails,
-  fetchLeagueData,
-  fetchTeamDetails,
-} from "@/app/apiHelpers/apiHelpers";
+import { fetchTeamDetails } from "@/app/apiHelpers/apiHelpers";
 import { useParams } from "next/navigation";
 import ScoreboardHeaderVersus from "@/app/components/scoring/scoreboardHeaderVersus";
 
-export default function MatchupPage() {
+interface MatchupPageProps {
+  leagueData: LeagueData;
+  teamScoringData: ScoringData;
+  gameweek: number;
+  loading: boolean;
+  error: string;
+}
+
+export default function MatchupPage({
+  leagueData,
+  teamScoringData,
+  gameweek,
+  loading,
+  error,
+}: MatchupPageProps) {
   const { leagueID, teamID } = useParams() as {
     leagueID: string;
     teamID: string;
   };
   const leagueIDNumber = Number(leagueID);
   const teamIDNumber = Number(teamID);
-  const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
   const [team, setTeam] = useState<LeagueEntry | null>(null);
   const [opponent, setOpponent] = useState<LeagueEntry | null>(null);
-  const [teamScoring, setTeamScoring] = useState<ScoringData | null>(null);
   const [opponentScoring, setOpponentScoring] = useState<ScoringData | null>(
     null,
   );
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        const leagueData = await fetchLeagueData(leagueIDNumber);
-        const gameweekInfo = await fetchGameWeekDetails();
-        const currentGameweek = gameweekInfo?.current_event;
+        const foundTeam = leagueData.league_entries.find(
+          (team) => team.entry_id == teamIDNumber,
+        );
+        if (foundTeam) {
+          setTeam(foundTeam);
+        }
 
-        if (leagueData && currentGameweek) {
-          const foundTeam = leagueData.league_entries.find(
-            (team) => team.entry_id == teamIDNumber,
+        // Get the opponent
+        const opponent = findOpponent(leagueData, teamIDNumber, gameweek);
+        setOpponent(opponent);
+
+        // Fetch scores for both teams
+        if (opponent) {
+          const opponentScoringData = await fetchTeamDetails(
+            opponent?.entry_id,
+            gameweek,
           );
-          if (foundTeam) {
-            setTeam(foundTeam);
-          }
-
-          // Get the opponent
-          const opponent = findOpponent(
-            leagueData,
-            teamIDNumber,
-            currentGameweek,
-          );
-          setOpponent(opponent);
-
-          // Fetch scores for both teams
-          const teamScoringData = await fetchTeamDetails(
-            teamIDNumber,
-            currentGameweek,
-          );
-          if (opponent) {
-            const opponentScoringData = await fetchTeamDetails(
-              opponent?.entry_id,
-              currentGameweek,
-            );
-            setOpponentScoring(opponentScoringData);
-          }
-
-          setGameweekInfo(gameweekInfo);
-          setTeamScoring(teamScoringData);
+          setOpponentScoring(opponentScoringData);
         }
       } catch (err) {
         console.error("Error fetching data:", err);
-        setError("An unexpected error occurred while loading the matchup.");
+        // setError("An unexpected error occurred while loading the matchup.");
       } finally {
-        setLoading(false);
+        //setLoading(false);
       }
     };
 
     fetchData();
   }, [leagueIDNumber, teamIDNumber]);
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-red-500">{error}</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
       <div className="w-full md:w-2/3 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
         {loading && <LoadingSpinner />}
-        {team && opponent && teamScoring && opponentScoring && (
+        {team && opponent && teamScoringData && opponentScoring && (
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full">
             {/* Mobile view */}
             <div className="md:hidden w-full flex gap justify-center gap-1">
               <ScoreboardHeaderVersus
                 teamName={team?.entry_name}
-                totalPoints={teamScoring?.totalPoints}
+                totalPoints={teamScoringData?.totalPoints}
                 alignPoints={"right"}
               />{" "}
               <div
@@ -122,11 +101,11 @@ export default function MatchupPage() {
               <div className="hidden md:block w-full">
                 <ScoreboardHeaderVersus
                   teamName={team?.entry_name}
-                  totalPoints={teamScoring?.totalPoints}
+                  totalPoints={teamScoringData?.totalPoints}
                   alignPoints={"right"}
                 />
               </div>
-              <ScoreBoard picks={teamScoring?.picks || []} />
+              <ScoreBoard picks={teamScoringData?.picks || []} />
             </div>
             <div
               className={

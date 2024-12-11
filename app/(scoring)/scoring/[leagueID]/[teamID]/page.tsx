@@ -126,7 +126,7 @@ export default function ScoringPage({
           )}
         </div>
         <TabPanels className={"w-full"}>
-          {leagueData && teamScoringData && (
+          {leagueData && teamScoringData && gameweekInfo && (
             <>
               <TabPanel>
                 <Scoring
@@ -137,7 +137,13 @@ export default function ScoringPage({
                 />
               </TabPanel>
               <TabPanel>
-                <MatchupPage />
+                <MatchupPage
+                  leagueData={leagueData}
+                  teamScoringData={teamScoringData}
+                  gameweek={gameweekInfo?.current_event}
+                  loading={loading}
+                  error={error}
+                />
               </TabPanel>
               <TabPanel>
                 <LeaguePage />
