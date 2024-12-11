@@ -41,7 +41,7 @@ export default function Header(): ReactNode {
           <ThemeToggle />
         </div>
       </div>
-      <div className="md:hidden bg-black/5 dark:bg-black/20">
+      <div className="md:hidden bg-black/5 dark:bg-black/20 ">
         <div className="w-full h-20 p-6 justify-between items-center inline-flex align-middle">
           <ThemeToggle />
           <div onClick={handleBackClick}>
