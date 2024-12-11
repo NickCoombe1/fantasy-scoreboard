@@ -13,13 +13,11 @@ import {
 } from "@/app/apiHelpers/apiHelpers";
 import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 
-export default function ScoringPage({
-  params,
-}: {
-  params: { leagueID: string; teamID: string };
-}) {
-  const leagueID = Number(params.leagueID);
-  const teamID = Number(params.teamID);
+interface ScoringPageProps {
+  leagueID: number;
+  teamID: number;
+}
+export default function Scoring({ leagueID, teamID }: ScoringPageProps) {
   const [gameweekInfo, setGameweekInfo] = useState<GameStatusData | null>(null);
   const [leagueData, setLeagueData] = useState<LeagueData | null>(null);
   const [teamScoringData, setTeamScoringData] = useState<ScoringData | null>(
@@ -112,9 +110,7 @@ export default function ScoringPage({
               teamName={team?.entry_name}
               alignPoints={"right"}
             />
-            <ScoreBoard
-              picks={teamScoringData.picks}
-            />
+            <ScoreBoard picks={teamScoringData.picks} />
           </div>
         ) : (
           loadingTeamData && <LoadingSpinner />

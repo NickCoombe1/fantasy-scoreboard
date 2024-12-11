@@ -1,17 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ScoreBoard from "@/app/components/scoring/scoreboard";
 import { LeagueData } from "@/app/models/league";
 import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
-import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import {
   fetchGameWeekDetails,
   fetchLeagueData,
   fetchTeamDetails,
 } from "@/app/apiHelpers/apiHelpers";
-import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import Scoring from "@/app/components/scoring/page";
 
 export default function ScoringPage({
   params,
@@ -91,35 +90,38 @@ export default function ScoringPage({
   }
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center p-6">
-      <div className="w-full md:w-1/2 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
-        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex">
-          {gameweekInfo && (
-            <>
-              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
-                GAME WEEK
-              </div>
-              <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
-                {gameweekInfo?.current_event}
-              </div>
-            </>
-          )}
-        </div>
-        {teamScoringData && team ? (
-          <div className="self-stretch flex-col justify-start items-center gap-2 md:gap-6 flex">
-            <ScoreBoardHeader
-              totalPoints={teamScoringData?.totalPoints || 0}
-              teamName={team?.entry_name}
-              alignPoints={"right"}
-            />
-            <ScoreBoard
-              picks={teamScoringData.picks}
-            />
+    <div className={"min-h-[80vh] flex flex-col items-center"}>
+      <TabGroup className={"w-full md:w-auto"}>
+        <div className="w-full md:px-1 pt-8 md:pb-1 bg-transparent md:bg-black/5 md:dark:bg-black/20 rounded-lg md:shadow md:backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
+          <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal">
+            Hawcey Gang
           </div>
-        ) : (
-          loadingTeamData && <LoadingSpinner />
-        )}
-      </div>
+          <TabList className="w-full justify-evenly items-center gap-3.5 md:gap-2 inline-flex h-[41px]">
+            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white data-[selected]:bg-button-light-secondary data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay data-[selected]:bg-transparent rounded justify-center items-center gap-2.5 inline-flex">
+              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
+                scoring
+              </div>
+            </Tab>
+            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white data-[selected]:bg-button-light-secondary data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay data-[selected]:bg-transparent rounded justify-center items-center gap-2.5 inline-flex">
+              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
+                Matchup
+              </div>
+            </Tab>
+            <Tab className="md:h-3.5 px-4 py-3.5 data-[selected]:bg-white data-[selected]:bg-button-light-secondary data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay data-[selected]:bg-transparent rounded justify-center items-center gap-2.5 inline-flex">
+              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
+                League Scoring
+              </div>
+            </Tab>
+          </TabList>{" "}
+        </div>
+        <TabPanels>
+          <TabPanel>
+            <Scoring leagueID={leagueID} teamID={teamID} />
+          </TabPanel>
+          <TabPanel>Content 2</TabPanel>
+          <TabPanel>Content 3</TabPanel>
+        </TabPanels>
+      </TabGroup>
     </div>
   );
 }
