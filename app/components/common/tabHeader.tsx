@@ -17,8 +17,8 @@ export default function TabHeader() {
   }, []);
 
   // Calculate how much to shrink or fade out the league name based on scroll position
-  const shrinkFactor = Math.min(scrollY / 200, 1); // Adjust 200 to control when it starts shrinking
-  const opacityFactor = Math.max(1 - scrollY / 200, 0); // Adjust 400 to control when it disappears
+  const shrinkFactor = Math.min(scrollY / 250, 1); // Adjust 200 to control when it starts shrinking
+  const opacityFactor = Math.max(1 - scrollY / 250, 0); // Adjust 400 to control when it disappears
 
   // Set the display to none when the opacity is 0
   const displayStyle = opacityFactor === 0 ? "none" : "flex";
@@ -31,7 +31,7 @@ export default function TabHeader() {
           fontSize: `${1.625 - shrinkFactor * 1}rem`, // Shrink the font size
           display: displayStyle,
           opacity: opacityFactor,
-          transition: "opacity 0.3s ease-out",
+          transition: "opacity 0.4s ease-out",
         }}
       >
         Hawcey Gang

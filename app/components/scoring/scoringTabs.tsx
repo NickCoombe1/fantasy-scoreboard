@@ -33,10 +33,10 @@ export default function ScoringTabs({
     (entry) => entry.entry_id === Number(teamID),
   );
   return (
-    <div className={"min-h-[80vh]"}>
-      <TabGroup className={"flex flex-col items-center  gap-4"}>
+    <div className={"relative md:top-[-3.125rem]"}>
+      <TabGroup className={"flex flex-col items-center gap-4 "}>
         <TabHeader />
-        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex mt-4">
+        <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex my-8">
           {gameweekInfo && (
             <>
               <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide">
