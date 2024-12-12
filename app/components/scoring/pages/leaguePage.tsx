@@ -19,7 +19,7 @@ export default function LeaguePage({
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
       <div className="w-full md:w-2/3 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
-        <div className="flex flex-col justify-center gap-4 md:gap-8 w-full">
+        <div className="flex flex-col justify-center gap-8 md:gap-16 w-full">
           {leagueData.matches
             .filter((match) => match.event === gameweek)
             .map((match, index) => {

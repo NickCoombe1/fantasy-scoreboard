@@ -30,9 +30,9 @@ const Matchup: React.FC<MatchupProps> = ({
 }) => {
   const [showScoreboard, setShowScoreboard] = useState(false);
   return (
-    <div className={"flex flex-col align-center gap-8"}>
+    <div className={"flex flex-col align-center gap-2 md:gap-8"}>
       {" "}
-      <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full">
+      <div className="flex flex-col md:flex-row justify-center gap-2 md:gap-6 w-full">
         {/* Mobile view */}
         <div className="md:hidden w-full flex gap justify-center gap-1">
           <ScoreboardHeaderVersus
