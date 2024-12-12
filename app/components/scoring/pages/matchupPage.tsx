@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import ScoreBoard from "@/app/components/scoring/scoreboard";
-import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import { LeagueData, LeagueEntry } from "@/app/models/league";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { fetchTeamDetails } from "@/app/apiHelpers/apiHelpers";
@@ -56,9 +55,7 @@ export default function MatchupPage({
         }
       } catch (err) {
         console.error("Error fetching data:", err);
-        // setError("An unexpected error occurred while loading the matchup.");
       } finally {
-        //setLoading(false);
       }
     };
 

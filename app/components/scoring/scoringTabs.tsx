@@ -13,8 +13,8 @@ const Scoring = React.lazy(
 const MatchupPage = React.lazy(
   () => import("@/app/components/scoring/pages/matchupPage"),
 );
-const LeaguePage = React.lazy(
-  () => import("@/app/components/scoring/pages/leaguePage"),
+const LeaguePageServer = React.lazy(
+  () => import("@/app/components/scoring/pages/leaguePageServer"),
 );
 
 interface ScoringTabsProps {
@@ -106,7 +106,10 @@ export default function ScoringTabs({
                     </div>
                   }
                 >
-                  <LeaguePage />{" "}
+                  <LeaguePageServer
+                    leagueData={leagueData}
+                    gameweek={gameweekInfo?.current_event}
+                  />{" "}
                 </Suspense>
               </TabPanel>
             </>
