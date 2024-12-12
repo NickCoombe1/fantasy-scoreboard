@@ -10,26 +10,15 @@ import { useParams } from "next/navigation";
 interface ScoringPageProps {
   leagueData: LeagueData;
   teamScoringData: ScoringData;
-  loading: boolean;
-  error: string;
 }
 export default function ScoringPage({
   leagueData,
   teamScoringData,
-  loading,
-  error,
 }: ScoringPageProps) {
   const { teamID } = useParams() as { teamID: string };
   const team = leagueData?.league_entries.find(
     (team) => team.entry_id === Number(teamID),
   );
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-red-500">{error}</p>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
@@ -43,7 +32,6 @@ export default function ScoringPage({
           )}
           <ScoreBoard picks={teamScoringData.picks} />
         </div>
-        {loading && <LoadingSpinner />}
       </div>
     </div>
   );

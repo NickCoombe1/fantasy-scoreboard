@@ -13,16 +13,12 @@ interface MatchupPageProps {
   leagueData: LeagueData;
   teamScoringData: ScoringData;
   gameweek: number;
-  loading: boolean;
-  error: string;
 }
 
 export default function MatchupPage({
   leagueData,
   teamScoringData,
   gameweek,
-  loading,
-  error,
 }: MatchupPageProps) {
   const { leagueID, teamID } = useParams() as {
     leagueID: string;
@@ -72,7 +68,6 @@ export default function MatchupPage({
   return (
     <div className="min-h-[80vh] flex flex-col items-center p-6">
       <div className="w-full md:w-2/3 flex-col justify-start items-center gap-8 md:gap-20 inline-flex">
-        {loading && <LoadingSpinner />}
         {team && opponent && teamScoringData && opponentScoring && (
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full">
             {/* Mobile view */}
