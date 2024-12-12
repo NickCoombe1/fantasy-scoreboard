@@ -81,13 +81,15 @@ export default function TeamPage() {
         <div className="self-stretch text-center text-light-80 dark:text-dark-80 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
           SELECT A LEAGUE
         </div>
-        <div className="w-1/2 h-[277px] flex-col justify-start items-center gap-2 flex">
+        <div className="md:w-1/2  h-[277px] flex-col justify-start items-center gap-2 flex">
           {!teamData && !error && <LoadingSpinner />}
           {leagueData?.map((league, index) => (
             <Button
               key={index}
-              className="self-stretch px-10 py-8 bg-black/20 rounded-2xl shadow-custom-light justify-center items-center inline-flex"
-              onClick={() => router.push(`/league/${league.league.id}`)}
+              className="self-stretch px-10 py-6 md:py-8 bg-black/20 rounded-2xl shadow-custom-light justify-center items-center inline-flex"
+              onClick={() =>
+                router.push(`/scoring/${league.league.id}/${teamID}`)
+              }
             >
               <div className="text-center text-light-90 dark:text-dark-90 text-[26px] font-semibold font-roobert leading-normal">
                 {league.league.name}
