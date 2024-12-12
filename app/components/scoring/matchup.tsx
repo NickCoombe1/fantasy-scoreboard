@@ -74,7 +74,7 @@ const Matchup: React.FC<MatchupProps> = ({
           {showScoreboard && <ScoreBoard picks={opponentScoring.picks} />}
         </div>
       </div>
-      <div className="opacity-60 justify-center items-center gap-6 inline-flex">
+      <div className="opacity-60 justify-center items-center gap-6 inline-flex mt-4">
         <button
           onClick={() => setShowScoreboard(!showScoreboard)}
           className="flex items-center justify-center gap-2 text-sm font-medium text-light-default dark:text-dark-default"

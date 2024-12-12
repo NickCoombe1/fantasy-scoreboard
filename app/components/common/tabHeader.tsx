@@ -8,7 +8,6 @@ interface TabHeaderProps {
 
 export default function TabHeader({ leagueName }: TabHeaderProps) {
   const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -19,20 +18,21 @@ export default function TabHeader({ leagueName }: TabHeaderProps) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const shrinkFactor = Math.min(scrollY / 200, 1.625);
+  const factor = 1.6;
+  const shrinkFactor = Math.min(scrollY / 100, factor);
   const opacityFactor = Math.max(1 - scrollY / 250, 0);
   return (
-    <div className="sticky top-0 z-[1000] md:top-[1.5rem] w-full md:w-auto md:px-1 px-1 pb-1 md:py-1 mt-[-2px] bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center inline-flex">
+    <div className="sticky top-0 md:z-[1000] md:top-[1.5rem] w-full md:w-auto md:px-1 px-1 pb-1 md:py-1 mt-[-2px] bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center inline-flex">
       <div
         className="text-center dark:text-dark-90 text-light-90 font-semibold leading-normal transition-all"
         style={{
-          fontSize: `${1.625 - shrinkFactor}rem`, // Shrink the font size
+          fontSize: `${factor - shrinkFactor}rem`,
           opacity: opacityFactor,
-          transition: "opacity 0.4s ease-out",
-          lineHeight: `${1.625 - shrinkFactor}rem`, // Shrink the font size
-          height: `${1.625 - shrinkFactor}rem`, // Shrink the font size
-          margin: `${1.625 - shrinkFactor}rem`,
+          transition:
+            "opacity 0.3s ease, font-size 0.3s ease, line-height 0.3s ease, height 0.3s ease",
+          lineHeight: `${factor - shrinkFactor}rem`,
+          height: `${factor - shrinkFactor}rem`,
+          margin: `${factor - shrinkFactor}rem`,
         }}
       >
         {leagueName}

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { LeagueData } from "@/app/models/league";
 import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { TabGroup, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import TabHeader from "@/app/components/common/tabHeader";
 
