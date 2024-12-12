@@ -35,7 +35,7 @@ export default function ScoringTabs({
   return (
     <div className={"relative md:top-[-3.125rem]"}>
       <TabGroup className={"flex flex-col items-center gap-4 "}>
-        <TabHeader />
+        <TabHeader leagueName={leagueData.league.name} />
         <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex my-8">
           {gameweekInfo && (
             <>
