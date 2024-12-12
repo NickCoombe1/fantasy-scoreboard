@@ -25,7 +25,7 @@ export default function Header(): ReactNode {
     }
   };
   return (
-    <header className={"md:sticky md:top-0 md:z-10"}>
+    <header className={"md:sticky top-0 md:z-10"}>
       <div className="w-full h-20 px-10 py-6 justify-between items-center hidden md:flex">
         <div className="w-[104px] h-[25.36px] relative">
           {" "}
