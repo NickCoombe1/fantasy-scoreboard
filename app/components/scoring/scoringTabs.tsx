@@ -1,13 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { LeagueData } from "@/app/models/league";
 import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import Scoring from "@/app/components/scoring/pages/scoringPage";
-import MatchupPage from "@/app/components/scoring/pages/matchupPage";
-import LeaguePage from "@/app/components/scoring/pages/leaguePage";
+import LoadingSpinner from "@/app/components/common/loadingSpinner";
+
+const Scoring = React.lazy(
+  () => import("@/app/components/scoring/pages/scoringPage"),
+);
+const MatchupPage = React.lazy(
+  () => import("@/app/components/scoring/pages/matchupPage"),
+);
+const LeaguePage = React.lazy(
+  () => import("@/app/components/scoring/pages/leaguePage"),
+);
 
 interface ScoringTabsProps {
   leagueData: LeagueData;
@@ -61,20 +69,45 @@ export default function ScoringTabs({
           {leagueData && teamScoringData && gameweekInfo && (
             <>
               <TabPanel>
-                <Scoring
-                  leagueData={leagueData}
-                  teamScoringData={teamScoringData}
-                />
+                <Suspense
+                  fallback={
+                    <div className={"flex justify-center mt-8"}>
+                      <LoadingSpinner />
+                    </div>
+                  }
+                >
+                  <Scoring
+                    leagueData={leagueData}
+                    teamScoringData={teamScoringData}
+                  />{" "}
+                </Suspense>
               </TabPanel>
               <TabPanel>
-                <MatchupPage
-                  leagueData={leagueData}
-                  teamScoringData={teamScoringData}
-                  gameweek={gameweekInfo?.current_event}
-                />
+                <Suspense
+                  fallback={
+                    <div className={"flex justify-center mt-8"}>
+                      <LoadingSpinner />
+                    </div>
+                  }
+                >
+                  <MatchupPage
+                    leagueData={leagueData}
+                    teamScoringData={teamScoringData}
+                    gameweek={gameweekInfo?.current_event}
+                  />{" "}
+                </Suspense>
               </TabPanel>
               <TabPanel>
-                <LeaguePage />
+                {" "}
+                <Suspense
+                  fallback={
+                    <div className={"flex justify-center mt-8"}>
+                      <LoadingSpinner />
+                    </div>
+                  }
+                >
+                  <LeaguePage />{" "}
+                </Suspense>
               </TabPanel>
             </>
           )}
