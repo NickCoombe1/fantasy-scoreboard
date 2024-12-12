@@ -84,7 +84,7 @@ export default function TeamPage() {
           {leagueData?.map((league, index) => (
             <Button
               key={index}
-              className="self-stretch px-10 py-6 md:py-8 h-[3.875rem]bg-black/20 rounded-2xl shadow-custom-light justify-center items-center inline-flex"
+              className="self-stretch px-10 py-6 md:py-8 h-[3.875rem] md:h-[5.4rem] bg-black/5 dark:bg-black/20 rounded-2xl shadow-custom-light justify-center items-center inline-flex"
               onClick={() =>
                 router.push(`/scoring/${league.league.id}/${teamID}`)
               }
