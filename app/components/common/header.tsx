@@ -25,9 +25,9 @@ export default function Header(): ReactNode {
     }
   };
   return (
-    <header>
-      <div className="w-full h-20 px-10 py-6 justify-between items-center hidden md:flex ">
-        <div className="w-[104px] h-[25.36px] relative ">
+    <header className={"md:sticky md:top-0"}>
+      <div className="w-full h-20 px-10 py-6 justify-between items-center hidden md:flex">
+        <div className="w-[104px] h-[25.36px] relative">
           {" "}
           <div onClick={handleBackClick}>
             <Logo mode={theme} />

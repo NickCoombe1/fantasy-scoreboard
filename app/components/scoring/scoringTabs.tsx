@@ -4,6 +4,7 @@ import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
+import TabHeader from "@/app/components/common/tabHeader";
 
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
@@ -34,28 +35,7 @@ export default function ScoringTabs({
   return (
     <div className={"min-h-[80vh]"}>
       <TabGroup className={"flex flex-col items-center  gap-4"}>
-        <div className="w-full md:w-auto md:px-1 pt-8 md:pb-1 px-1 pb-1 mt-[-2px] bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center gap-8 inline-flex">
-          <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal">
-            {leagueData.league.name}
-          </div>
-          <TabList className="w-full items-center justify-center gap-2 md:gap-2 inline-flex h-[41px] mx-8">
-            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
-              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
-                MY scoring
-              </div>
-            </Tab>
-            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white  data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
-              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
-                Matchup
-              </div>
-            </Tab>
-            <Tab className="flex-grow md:h-[2.5rem] px-4 py-3.5 data-[selected]:bg-white data-[selected]:dark:bg-button-dark-bg data-[selected]:dark:bg-button-dark-secondary data-[selected]:bg-blend-overlay  rounded justify-center items-center gap-2.5 inline-flex">
-              <div className="text-center text-light-default dark:text-dark-default text-sm font-roobertMono uppercase leading-3 tracking-tight">
-                League Scoring
-              </div>
-            </Tab>
-          </TabList>{" "}
-        </div>
+        <TabHeader />
         <div className="h-[108px] md:h-[137px] flex-col justify-start items-center gap-4 flex mt-4">
           {gameweekInfo && (
             <>
