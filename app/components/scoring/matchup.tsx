@@ -1,87 +1,95 @@
+import ScoreboardHeaderVersus from "@/app/components/scoring/scoreboardHeaderVersus";
+import ScoreBoard from "@/app/components/scoring/scoreboard";
 import React, { useState } from "react";
 import { PlayerPick } from "@/app/models/playerPick";
-import { LeagueEntry } from "@/app/models/league";
-import Scoreboard from "@/app/components/scoring/scoreboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faExchangeAlt,
-  faChevronDown,
-  faChevronUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-type MatchUpCardProps = {
-  team1: {
-    picks: PlayerPick[];
-    team: LeagueEntry | undefined;
+interface MatchupProps {
+  team: {
+    entry_name: string;
+  };
+  opponent: {
+    entry_name: string;
+  };
+  teamScoring: {
     totalPoints: number;
-  };
-  team2: {
     picks: PlayerPick[];
-    team: LeagueEntry | undefined;
+  };
+  opponentScoring: {
     totalPoints: number;
+    picks: PlayerPick[];
   };
-};
+}
 
-export default function MatchUpCard({ team1, team2 }: MatchUpCardProps) {
-  const [showTeam1, setShowTeam1] = useState(true);
-  const [isScoreboardVisible, setIsScoreboardVisible] = useState(false);
-
-  const handleToggleTeam = () => {
-    setShowTeam1(!showTeam1);
-  };
-
-  const handleToggleScoreboard = () => {
-    setIsScoreboardVisible(!isScoreboardVisible);
-  };
-
+const Matchup: React.FC<MatchupProps> = ({
+  team,
+  opponent,
+  teamScoring,
+  opponentScoring,
+}) => {
+  const [showScoreboard, setShowScoreboard] = useState(false);
   return (
-    <div className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md max-w-3xl mx-auto">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white p-2">
-          {`${team1.team?.entry_name} VS ${team2.team?.entry_name}`}
-        </h2>
-        <button
-          onClick={handleToggleTeam}
-          className="flex items-center gap-2 px-3 py-1 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition"
-          aria-label="Switch Teams"
-        >
-          <FontAwesomeIcon icon={faExchangeAlt} />
-          <span>Switch</span>
-        </button>
+    <div className={"flex flex-col align-center gap-2 md:gap-8"}>
+      {" "}
+      <div className="flex flex-col md:flex-row justify-center gap-2 md:gap-6 w-full">
+        {/* Mobile view */}
+        <div className="md:hidden w-full flex gap justify-center gap-1">
+          <ScoreboardHeaderVersus
+            teamName={team.entry_name}
+            totalPoints={teamScoring.totalPoints}
+            alignPoints="right"
+          />
+          <div className="dark:text-dark-90 text-light-90 font-semibold text-base leading-[.875rem] mt-5 md:hidden">
+            V
+          </div>
+          <ScoreboardHeaderVersus
+            teamName={opponent.entry_name}
+            totalPoints={opponentScoring.totalPoints}
+            alignPoints="left"
+          />
+        </div>
+        {/* Desktop view */}
+        <div className="flex flex-col items-start gap-6 w-full">
+          <div className="hidden md:block w-full">
+            <ScoreboardHeaderVersus
+              teamName={team.entry_name}
+              totalPoints={teamScoring.totalPoints}
+              alignPoints="right"
+            />
+          </div>
+          {showScoreboard && <ScoreBoard picks={teamScoring.picks} />}
+        </div>
+        <div className="dark:text-dark-90 text-light-90 font-semibold text-[1.625rem] leading-normal mt-4 hidden md:block">
+          V
+        </div>
+        <div className="flex flex-col items-start gap-6 w-full">
+          <div className="hidden md:block w-full">
+            <ScoreboardHeaderVersus
+              teamName={opponent.entry_name}
+              totalPoints={opponentScoring.totalPoints}
+              alignPoints="left"
+            />
+          </div>
+          {showScoreboard && <ScoreBoard picks={opponentScoring.picks} />}
+        </div>
       </div>
-      <div className="text-center mb-5">
-        <p className="text-4xl font-semibold text-indigo-600">
-          {`${team1.totalPoints} vs ${team2.totalPoints}`}
-        </p>
-      </div>
-      <div>
+      <div className="opacity-60 justify-center items-center gap-6 inline-flex mt-4">
         <button
-          onClick={handleToggleScoreboard}
-          className="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-white hover:underline mb-4"
-          aria-label="Toggle Scoreboard"
+          onClick={() => setShowScoreboard(!showScoreboard)}
+          className="flex items-center justify-center gap-2 text-sm font-medium text-light-default dark:text-dark-default"
         >
-          <span>
-            {isScoreboardVisible ? "Hide Scoreboard" : "Show Scoreboard"}
-          </span>
+          <div className="text-center text-light-60 dark:text-dark-60 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
+            {`${!showScoreboard ? "SHOW" : "HIDE"} SCOREBOARD`}
+          </div>
           <FontAwesomeIcon
-            icon={isScoreboardVisible ? faChevronUp : faChevronDown}
+            icon={showScoreboard ? faChevronUp : faChevronDown}
+            className={"text-light-default dark:text-dark-default"}
           />
         </button>
-        {isScoreboardVisible &&
-          (showTeam1 ? (
-            <Scoreboard
-              picks={team1.picks}
-              team={team1.team}
-              totalPoints={team1.totalPoints}
-            />
-          ) : (
-            <Scoreboard
-              picks={team2.picks}
-              team={team2.team}
-              totalPoints={team2.totalPoints}
-            />
-          ))}
-      </div>
+      </div>{" "}
     </div>
   );
-}
+};
+
+export default Matchup;

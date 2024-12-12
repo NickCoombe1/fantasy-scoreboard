@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import ThemeToggle from "@/app/components/utility/themeToggle";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, usePathname } from "next/navigation";
 import StyledButton from "./styledButton";
 import About from "../svgs/about";
 import Menu from "../svgs/menu";
@@ -11,9 +11,13 @@ import { useTheme } from "@/app/hooks/getTheme";
 
 export default function Header(): ReactNode {
   const params = useParams();
+  const pathname = usePathname();
   const router = useRouter();
   const teamID = params?.teamID;
   const { theme } = useTheme();
+
+  //make the mob background transparent if the path is not /scoring as we have a header component that handles it for us
+  const backgroundTransparent = !pathname.startsWith("/scoring/");
   const handleBackClick = () => {
     if (teamID) router.push(`/team/${teamID}`);
     else {
@@ -21,27 +25,37 @@ export default function Header(): ReactNode {
     }
   };
   return (
-    <header>
-      <div className="w-full h-20 px-10 py-6 justify-between items-center inline-flex hidden md:flex">
-        <div className="w-[104px] h-[25.36px] relative ">
+    <header className={"md:sticky top-0 z-[1000]"}>
+      <div className="w-full h-20 px-10 py-6 justify-between items-center hidden md:flex">
+        <div className="w-[104px] h-[25.36px] relative md:z-10">
           {" "}
           <div onClick={handleBackClick}>
             <Logo mode={theme} />
           </div>
         </div>
-        <div className="justify-start items-center gap-2 flex">
-          <StyledButton label="MY LEAGUES" secondary={true} type={"button"}>
-            {" "}
-            <Link href="/about">About</Link>
-          </StyledButton>
-          <StyledButton label="ABOUT" secondary={true} type={"button"}>
-            {" "}
-            <Link href="/about">About</Link>
-          </StyledButton>
+        <div className="justify-start items-center gap-2 flex md:z-10">
+          {teamID && (
+            <Link href={teamID ? `/team/${teamID}` : `/welcome`}>
+              <StyledButton label="MY LEAGUES" secondary={true} type="button">
+                My Leagues
+              </StyledButton>
+            </Link>
+          )}
+          <Link href="/about">
+            <StyledButton label="ABOUT" secondary={true} type={"button"}>
+              About
+            </StyledButton>
+          </Link>
           <ThemeToggle />
         </div>
       </div>
-      <div className="md:hidden">
+      <div
+        className={`md:hidden ${
+          backgroundTransparent
+            ? "bg-transparent"
+            : "bg-black/5 dark:bg-black/20"
+        }`}
+      >
         <div className="w-full h-20 p-6 justify-between items-center inline-flex align-middle">
           <ThemeToggle />
           <div onClick={handleBackClick}>

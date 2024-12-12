@@ -65,6 +65,8 @@ const config: Config = {
       boxShadow: {
         "custom-light": "0px 0px 110px 0px rgba(255, 255, 255, 0.20)",
         "custom-light-header": "0 0 100px 0 rgba(255, 255, 255, 0.18)",
+        "custom-light-header-bottom":
+          "0 110px 110px -110px rgba(255, 255, 255, 0.20)",
       },
       backdropBlur: {
         20: "20px",
