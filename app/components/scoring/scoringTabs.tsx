@@ -6,12 +6,13 @@ import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
+import { useParams } from "next/navigation";
 
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
 );
-const MatchupPage = React.lazy(
-  () => import("@/app/components/scoring/pages/matchupPage"),
+const MatchupPageServer = React.lazy(
+  () => import("@/app/components/scoring/pages/matchupPageServer"),
 );
 const LeaguePageServer = React.lazy(
   () => import("@/app/components/scoring/pages/leaguePageServer"),
@@ -28,6 +29,12 @@ export default function ScoringTabs({
   teamScoringData,
   gameweekInfo,
 }: ScoringTabsProps) {
+  const { teamID } = useParams() as {
+    teamID: string;
+  };
+  const team = leagueData.league_entries.find(
+    (entry) => entry.entry_id === Number(teamID),
+  );
   return (
     <div className={"min-h-[80vh]"}>
       <TabGroup className={"flex flex-col items-center  gap-4"}>
@@ -90,11 +97,15 @@ export default function ScoringTabs({
                     </div>
                   }
                 >
-                  <MatchupPage
-                    leagueData={leagueData}
-                    teamScoringData={teamScoringData}
-                    gameweek={gameweekInfo?.current_event}
-                  />{" "}
+                  {team && (
+                    <MatchupPageServer
+                      team={team}
+                      teamID={Number(teamID)}
+                      leagueData={leagueData}
+                      teamScoringData={teamScoringData}
+                      gameweek={gameweekInfo?.current_event}
+                    />
+                  )}
                 </Suspense>
               </TabPanel>
               <TabPanel>

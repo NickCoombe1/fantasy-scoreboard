@@ -3,7 +3,6 @@
 import ScoreBoard from "@/app/components/scoring/scoreboard";
 import { LeagueData } from "@/app/models/league";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
-import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import ScoreBoardHeader from "@/app/components/scoring/scoreboardHeader";
 import { useParams } from "next/navigation";
 
