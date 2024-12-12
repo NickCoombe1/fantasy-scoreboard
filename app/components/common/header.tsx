@@ -30,14 +30,18 @@ export default function Header(): ReactNode {
           </div>
         </div>
         <div className="justify-start items-center gap-2 flex">
-          <StyledButton label="MY LEAGUES" secondary={true} type={"button"}>
-            {" "}
-            <Link href="/about">About</Link>
-          </StyledButton>
-          <StyledButton label="ABOUT" secondary={true} type={"button"}>
-            {" "}
-            <Link href="/about">About</Link>
-          </StyledButton>
+          {teamID && (
+            <Link href={teamID ? `/team/${teamID}` : `/welcome`}>
+              <StyledButton label="MY LEAGUES" secondary={true} type="button">
+                My Leagues
+              </StyledButton>
+            </Link>
+          )}
+          <Link href="/about">
+            <StyledButton label="ABOUT" secondary={true} type={"button"}>
+              About
+            </StyledButton>
+          </Link>
           <ThemeToggle />
         </div>
       </div>

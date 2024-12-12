@@ -4,7 +4,6 @@ import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
-import { useParams } from "next/navigation";
 
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
