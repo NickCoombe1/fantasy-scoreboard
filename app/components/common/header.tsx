@@ -25,15 +25,15 @@ export default function Header(): ReactNode {
     }
   };
   return (
-    <header className={"md:sticky top-0 md:z-10"}>
+    <header className={"md:sticky top-0 z-[1000]"}>
       <div className="w-full h-20 px-10 py-6 justify-between items-center hidden md:flex">
-        <div className="w-[104px] h-[25.36px] relative">
+        <div className="w-[104px] h-[25.36px] relative md:z-10">
           {" "}
           <div onClick={handleBackClick}>
             <Logo mode={theme} />
           </div>
         </div>
-        <div className="justify-start items-center gap-2 flex">
+        <div className="justify-start items-center gap-2 flex md:z-10">
           {teamID && (
             <Link href={teamID ? `/team/${teamID}` : `/welcome`}>
               <StyledButton label="MY LEAGUES" secondary={true} type="button">
