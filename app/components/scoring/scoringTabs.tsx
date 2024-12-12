@@ -1,5 +1,3 @@
-"use client";
-
 import React, { Suspense } from "react";
 import { LeagueData } from "@/app/models/league";
 import { GameStatusData } from "@/app/models/game";
@@ -22,16 +20,15 @@ interface ScoringTabsProps {
   leagueData: LeagueData;
   teamScoringData: ScoringData;
   gameweekInfo: GameStatusData;
+  teamID: number;
 }
 
 export default function ScoringTabs({
   leagueData,
   teamScoringData,
   gameweekInfo,
+  teamID,
 }: ScoringTabsProps) {
-  const { teamID } = useParams() as {
-    teamID: string;
-  };
   const team = leagueData.league_entries.find(
     (entry) => entry.entry_id === Number(teamID),
   );

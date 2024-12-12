@@ -39,6 +39,7 @@ export default async function ScoringPage({
         leagueData={leagueData}
         teamScoringData={teamScoringData}
         gameweekInfo={gameweekInfo}
+        teamID={teamID}
       />
     );
   } catch (error) {
