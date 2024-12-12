@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import ThemeToggle from "@/app/components/utility/themeToggle";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, usePathname } from "next/navigation";
 import StyledButton from "./styledButton";
 import About from "../svgs/about";
 import Menu from "../svgs/menu";
@@ -11,9 +11,13 @@ import { useTheme } from "@/app/hooks/getTheme";
 
 export default function Header(): ReactNode {
   const params = useParams();
+  const pathname = usePathname();
   const router = useRouter();
   const teamID = params?.teamID;
   const { theme } = useTheme();
+
+  //make the mob background transparent if the path is not /scoring as we have a header component that handles it for us
+  const backgroundTransparent = !pathname.startsWith("/scoring/");
   const handleBackClick = () => {
     if (teamID) router.push(`/team/${teamID}`);
     else {
@@ -45,7 +49,13 @@ export default function Header(): ReactNode {
           <ThemeToggle />
         </div>
       </div>
-      <div className="md:hidden bg-black/5 dark:bg-black/20 ">
+      <div
+        className={`md:hidden ${
+          backgroundTransparent
+            ? "bg-transparent"
+            : "bg-black/5 dark:bg-black/20"
+        }`}
+      >
         <div className="w-full h-20 p-6 justify-between items-center inline-flex align-middle">
           <ThemeToggle />
           <div onClick={handleBackClick}>
