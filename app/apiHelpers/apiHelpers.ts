@@ -32,6 +32,9 @@ export const fetchTeamDetails = async (
 ): Promise<ScoringData> => {
   const response = await fetch(
     `${baseUrl}/api/fetchScoringData?teamID=${teamID}&gameweek=${gameweek}`,
+    {
+      next: { revalidate: 60 },
+    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");
