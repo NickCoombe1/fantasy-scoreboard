@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
     const url = `https://draft.premierleague.com/api/entry/${teamIDNumber}/event/${gameweekNumber}`;
 
-    const response = await fetch(url, { next: { revalidate: 60 } });
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(
         `Failed to fetch team data for team ${teamIDNumber}, gameweek ${gameweekNumber}: ${response.statusText}`,

@@ -12,7 +12,7 @@ const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export const fetchGameWeekDetails = async (): Promise<GameStatusData> => {
   const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`, {
-    cache: "no-store",
+    next: { revalidate: 1800 },
   });
   if (response.ok) return response.json();
   throw new Error("Failed to fetch gameweek details");
@@ -23,6 +23,7 @@ export const fetchLeagueData = async (
 ): Promise<LeagueData> => {
   const response = await fetch(
     `${baseUrl}/api/fetchLeagueDetails?leagueID=${leagueID}`,
+    { next: { revalidate: 86400 } },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch league data");
@@ -56,16 +57,16 @@ export const fetchGameweekFixtureData = async (
 ): Promise<Fixtures> => {
   const response = await fetch(
     `${baseUrl}/api/fetchGameWeekFixtures?gameweek=${gameweek}`,
-    {
-      cache: "no-store",
-    },
+    { next: { revalidate: 60 } },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
 };
 
 export const fetchBootStrap = async (): Promise<FplBootstrapResponse> => {
-  const response = await fetch(`${baseUrl}/api/fetchBootStrap`);
+  const response = await fetch(`${baseUrl}/api/fetchBootStrap`, {
+    next: { revalidate: 86400 },
+  }); //one day
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
 };
@@ -75,6 +76,9 @@ export const fetchWeeklyScoringData = async (
 ): Promise<PlayerDataResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
+    {
+      cache: "no-store",
+    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
@@ -86,6 +90,7 @@ export const fetchWeeklyTeam = async (
 ): Promise<FplTeamPicksResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyTeam?teamID=${teamID}&gameweek=${gameweek}`,
+    { next: { revalidate: 86400 } },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");

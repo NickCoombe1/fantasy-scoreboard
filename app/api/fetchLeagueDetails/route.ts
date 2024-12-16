@@ -15,9 +15,6 @@ export async function GET(request: Request) {
   try {
     const response = await fetch(
       `https://draft.premierleague.com/api/league/${leagueID}/details`,
-      {
-        next: { revalidate: 60 },
-      },
     );
 
     if (!response.ok) {
