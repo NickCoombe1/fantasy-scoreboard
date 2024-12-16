@@ -65,6 +65,22 @@ export default function TeamPage() {
     fetchData();
   }, [teamID]);
 
+  const handleLeagueSelection = (leagueID: number) => {
+    try {
+      // Use document.cookie to set the cookies
+      document.cookie = `teamID=${teamID}; path=/; max-age=${7 * 24 * 60 * 60}`;
+      document.cookie = `leagueID=${leagueID}; path=/; max-age=${
+        7 * 24 * 60 * 60
+      }`;
+
+      // Navigate to the scoring page
+      router.push(`/scoring/${leagueID}/${teamID}`);
+    } catch (error) {
+      console.error("Error setting cookies:", error);
+      setError("Failed to set cookies. Please try again.");
+    }
+  };
+
   if (error) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
@@ -85,9 +101,7 @@ export default function TeamPage() {
             <Button
               key={index}
               className="self-stretch px-10 py-6 md:py-8 h-[3.875rem] md:h-[5.4rem] bg-black/5 dark:bg-black/20 rounded-2xl shadow-custom-light justify-center items-center inline-flex"
-              onClick={() =>
-                router.push(`/scoring/${league.league.id}/${teamID}`)
-              }
+              onClick={() => handleLeagueSelection(league.league.id)}
             >
               <div className="text-center text-light-90 dark:text-dark-90 text-base md:text-[1.625rem] font-semibold font-roobert leading-[.9em] md:leading-normal">
                 {league.league.name}
