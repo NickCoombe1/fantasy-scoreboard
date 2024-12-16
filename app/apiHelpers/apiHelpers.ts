@@ -38,7 +38,16 @@ export const fetchTeamDetails = async (
       next: { revalidate: 60 },
     },
   );
-  if (response.ok) return response.json();
+
+  if (response.ok) {
+    const data: ScoringData = await response.json();
+    const lastRefresh = response.headers.get("Date"); // Retrieve the 'Date' header
+    if (lastRefresh) {
+      data.lastRefreshed = lastRefresh;
+    }
+    return data;
+  }
+
   throw new Error("Failed to fetch team details");
 };
 

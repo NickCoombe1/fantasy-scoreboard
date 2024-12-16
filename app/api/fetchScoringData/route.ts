@@ -15,6 +15,7 @@ import { PlayerDataResponse } from "@/app/api/fetchWeeklyScoring/route";
 export interface ScoringData {
   totalPoints: number;
   picks: PlayerPick[];
+  lastRefreshed?: string;
 }
 
 export async function GET(request: Request) {
