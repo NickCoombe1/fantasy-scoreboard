@@ -12,7 +12,7 @@ const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export const fetchGameWeekDetails = async (): Promise<GameStatusData> => {
   const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`, {
-    next: { revalidate: 60 },
+    cache: "no-store",
   });
   if (response.ok) return response.json();
   throw new Error("Failed to fetch gameweek details");
@@ -35,7 +35,7 @@ export const fetchTeamDetails = async (
   const response = await fetch(
     `${baseUrl}/api/fetchScoringData?teamID=${teamID}&gameweek=${gameweek}`,
     {
-      next: { revalidate: 60 },
+      cache: "no-store",
     },
   );
 
@@ -57,7 +57,7 @@ export const fetchGameweekFixtureData = async (
   const response = await fetch(
     `${baseUrl}/api/fetchGameWeekFixtures?gameweek=${gameweek}`,
     {
-      next: { revalidate: 60 },
+      cache: "no-store",
     },
   );
   if (response.ok) return response.json();
@@ -75,9 +75,6 @@ export const fetchWeeklyScoringData = async (
 ): Promise<PlayerDataResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
-    {
-      next: { revalidate: 60 },
-    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
@@ -89,9 +86,6 @@ export const fetchWeeklyTeam = async (
 ): Promise<FplTeamPicksResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyTeam?teamID=${teamID}&gameweek=${gameweek}`,
-    {
-      next: { revalidate: 60 },
-    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");
