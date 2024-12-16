@@ -52,3 +52,5 @@ export default async function ScoringPage({
     );
   }
 }
+
+export const fetchCache = "force-no-store";

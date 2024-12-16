@@ -21,17 +21,4 @@ export default {
       },
     ];
   },
-  async headers() {
-    return [
-      {
-        source: "/scoring/:path*", // Match all scoring-related routes
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store, must-revalidate", // Prevent caching and force revalidation
-          },
-        ],
-      },
-    ];
-  },
 };
