@@ -1,22 +1,42 @@
 "use client";
 
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import TitleDesktop from "@/app/components/svgs/titleDesktop";
 import ScoreboardDesktop from "@/app/components/svgs/scoreboardDesktop";
 import TitleMobile from "@/app/components/svgs/titleMobile";
 import ScoreboardMobile from "@/app/components/svgs/scoreboardMobile";
 import StyledButton from "@/app/components/common/styledButton";
-import { useRouter } from "next/navigation";
 import { useTheme } from "@/app/hooks/getTheme";
 import About from "@/app/components/svgs/about";
 import { Modal, useDialog } from "@/app/components/common/modal";
+
 export default function WelcomePage() {
   const router = useRouter();
   const { theme } = useTheme();
   const [teamInput, setTeamInput] = useState("");
   const [error, setError] = useState("");
   const { isOpen, openDialog, closeDialog } = useDialog();
+
+  // Check cookies and redirect if teamID and leagueID are present
+  useEffect(() => {
+    const cookies = document.cookie.split("; ").reduce(
+      (acc, cookie) => {
+        const [key, value] = cookie.split("=");
+        acc[key] = value;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
+
+    const teamID = cookies["teamID"];
+    const leagueID = cookies["leagueID"];
+
+    if (teamID && leagueID) {
+      router.push(`/scoring/${leagueID}/${teamID}`);
+    }
+  }, [router]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -28,6 +48,7 @@ export default function WelcomePage() {
       return;
     }
 
+    // Save teamID in cookies
     document.cookie = `teamID=${teamID}; path=/; max-age=${60 * 60 * 24 * 30}`; // Expires in 30 days
     router.push(`/team/${teamID}`);
   };
