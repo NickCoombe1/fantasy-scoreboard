@@ -61,6 +61,9 @@ export const fetchWeeklyScoringData = async (
 ): Promise<PlayerDataResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
+    {
+      next: { revalidate: 60 },
+    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
@@ -72,6 +75,9 @@ export const fetchWeeklyTeam = async (
 ): Promise<FplTeamPicksResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyTeam?teamID=${teamID}&gameweek=${gameweek}`,
+    {
+      next: { revalidate: 60 },
+    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");
