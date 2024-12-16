@@ -19,7 +19,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Goalkeeper,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Defender,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Defender,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 4,
@@ -70,7 +70,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Defender,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Midfielder,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 6,
@@ -104,7 +104,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Midfielder,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 7,
@@ -121,7 +121,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Midfielder,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 8,
@@ -138,7 +138,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Forward,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 9,
@@ -155,7 +155,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Forward,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 10,
@@ -172,7 +172,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Forward,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 11,
@@ -189,7 +189,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Midfielder,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   // Bench players
   {
@@ -207,7 +207,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Goalkeeper,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 13,
@@ -224,7 +224,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Defender,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 14,
@@ -241,7 +241,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Midfielder,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
   {
     id: 15,
@@ -258,7 +258,7 @@ export const mockFullTeam: PlayerPick[] = [
     redCarded: false,
     fieldPosition: ElementType.Forward,
     isInjured: false,
-    gameStatus: { isFinished: true, isInProgress: false, currentMinute: null },
+    gameStatus: { isFinished: true, isInProgress: false },
   },
 ];
 
