@@ -33,7 +33,6 @@ export default async function ScoringPage({
       throw new Error("Failed to load team scoring data");
     }
 
-    // Pass the data to the client-side component
     return (
       <ScoringTabs
         leagueData={leagueData}
