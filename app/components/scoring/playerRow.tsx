@@ -22,6 +22,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
   const toggleDetails = () => setIsExpanded(!isExpanded);
   return (
     <div
+      key={pick.element}
       className={`self-stretch ${isExpanded ? "pt-3 pb-6 gap-6" : "py-3 gap-2.5"}  border-b border-[#040404]/20 dark:border-white/20 flex-col justify-start items-start flex`}
       onClick={toggleDetails}
     >
