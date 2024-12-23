@@ -91,7 +91,7 @@ export default function TeamPage() {
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center p-6">
-      <div className="w-full md:h-[330px] flex-col justify-start items-center gap-10 inline-flex mt-auto">
+      <div className="w-full md:h-[330px] flex-col justify-start items-center gap-10 inline-flex my-auto">
         <div className="self-stretch text-center text-light-80 dark:text-dark-80 text-sm font-medium font-roobertMono uppercase leading-3 tracking-wide">
           SELECT A LEAGUE
         </div>

@@ -12,7 +12,6 @@ export default async function ScoringPage({
 }) {
   const leagueID = Number(params.leagueID);
   const teamID = Number(params.teamID);
-
   try {
     // Fetch data server-side
     const gameweekInfo = await fetchGameWeekDetails();
