@@ -35,20 +35,8 @@ export const fetchTeamDetails = async (
 ): Promise<ScoringData> => {
   const response = await fetch(
     `${baseUrl}/api/fetchScoringData?teamID=${teamID}&gameweek=${gameweek}`,
-    {
-      cache: "no-store",
-    },
   );
-
-  if (response.ok) {
-    const data: ScoringData = await response.json();
-    const lastRefresh = response.headers.get("Date"); // Retrieve the 'Date' header
-    if (lastRefresh) {
-      data.lastRefreshed = lastRefresh;
-    }
-    return data;
-  }
-
+  if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");
 };
 
@@ -57,7 +45,6 @@ export const fetchGameweekFixtureData = async (
 ): Promise<Fixtures> => {
   const response = await fetch(
     `${baseUrl}/api/fetchGameWeekFixtures?gameweek=${gameweek}`,
-    { next: { revalidate: 60 } },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
@@ -76,9 +63,6 @@ export const fetchWeeklyScoringData = async (
 ): Promise<PlayerDataResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyScoring?gameweek=${gameweek}`,
-    {
-      cache: "no-store",
-    },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to gameweek data");
@@ -90,7 +74,6 @@ export const fetchWeeklyTeam = async (
 ): Promise<FplTeamPicksResponse> => {
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyTeam?teamID=${teamID}&gameweek=${gameweek}`,
-    { next: { revalidate: 86400 } },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");

@@ -97,3 +97,5 @@ export default function Layout({
     </html>
   );
 }
+
+export const fetchCache = "default-no-store";
