@@ -21,6 +21,7 @@ export default function WelcomePage() {
   const [loading, setLoading] = useState(false);
   // Check cookies and redirect if teamID and leagueID are present
   useEffect(() => {
+    // Parse cookies
     const cookies = document.cookie.split("; ").reduce(
       (acc, cookie) => {
         const [key, value] = cookie.split("=");
@@ -33,7 +34,12 @@ export default function WelcomePage() {
     const teamID = cookies["teamID"];
     const leagueID = cookies["leagueID"];
 
-    if (teamID && leagueID) {
+    // Check if user came from another page in your site
+    const referrer = document.referrer;
+    const isInternalReferrer =
+      referrer && new URL(referrer).origin === window.location.origin;
+
+    if (!isInternalReferrer && teamID && leagueID) {
       setLoading(true);
       router.push(`/scoring/${leagueID}/${teamID}`);
     }
