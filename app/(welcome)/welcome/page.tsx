@@ -60,7 +60,7 @@ export default function WelcomePage() {
       {loading && <LoadingSpinner />}
       {!loading && (
         <>
-          <div className="w-full max-w-4xl h-80 md:h-[461.43px] flex-col justify-start items-center gap-24 md:gap-30 inline-flex ">
+          <div className="w-full max-w-4xl h-80 md:h-[461.43px] flex-col justify-start items-center gap-24 md:gap-30 inline-flex mb-[6rem]">
             <div className="self-stretch flex-col justify-start items-center md:gap-20 gap-12 flex ">
               <div className="self-stretch text-center text-light-80 dark:text-dark-80 md:text-sm font-medium font-roobertMono uppercase md:leading-3 md:tracking-wide text-xs leading-[10.80px] tracking-tight">
                 WELCOME TO THE

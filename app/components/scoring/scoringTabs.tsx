@@ -46,10 +46,6 @@ export default function ScoringTabs({
               <div className="self-stretch text-center dark:text-dark-90 text-light-90 text-[5.625rem] md:text-9xl font-medium font-roobert leading-[5rem] md:leading-[6.75rem]">
                 {gameweekInfo?.current_event}
               </div>
-              <div className="self-stretch text-center text-light-80 md:text-light-60 dark:text-dark-80 dark:md:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-3 tracking-tight md:tracking-wide mt-3">
-                Last refresh:{" "}
-                {formatRelativeTime(teamScoringData.lastRefreshed)}
-              </div>
             </>
           )}
         </div>
