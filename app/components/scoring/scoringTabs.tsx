@@ -5,7 +5,6 @@ import { ScoringData } from "@/app/api/fetchScoringData/route";
 import { TabGroup, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import TabHeader from "@/app/components/common/tabHeader";
-import { formatRelativeTime } from "@/app/utils/formatRelativeTime";
 
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
