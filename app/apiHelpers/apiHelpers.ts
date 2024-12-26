@@ -11,9 +11,8 @@ const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 export const fetchGameWeekDetails = async (): Promise<GameStatusData> => {
-  const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`, {
-    next: { revalidate: 1800 },
-  });
+  const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`);
+
   if (response.ok) return response.json();
   throw new Error("Failed to fetch gameweek details");
 };

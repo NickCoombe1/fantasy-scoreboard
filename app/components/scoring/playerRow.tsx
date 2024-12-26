@@ -30,7 +30,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
         <div className="text-center items-center text-light-90 dark:text-dark-90 text-base md:text-lg font-medium font-roobert leading-[.9rem] md:leading-none flex gap-2">
           {pick.name}
           {pick.willBeAutosubbed && (
-            <div className="relative group">
+            <div className="z-[-1] relative group">
               <FontAwesomeIcon icon={faArrowRightArrowLeft} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs dark:bg-white dark:text-black bg-black text-white py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Autosubbed
@@ -38,7 +38,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             </div>
           )}
           {pick.gameStatus.isInProgress && pick.wasSubbedOn && (
-            <div className="relative group">
+            <div className="z-[-1] relative group">
               <FontAwesomeIcon icon={faPersonRunning} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs dark:bg-white dark:text-black bg-black text-white py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 On the Pitch
@@ -49,7 +49,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             !pick.isSub &&
             pick.hasPlayed &&
             pick.gameStatus.isFinished && (
-              <div className="relative group">
+              <div className="z-[-1] relative group">
                 <FontAwesomeIcon
                   icon={faAward}
                   className="text-light-red dark:text-dark-red"
@@ -60,7 +60,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
               </div>
             )}
           {pick.yellowCarded && (
-            <div className="relative group">
+            <div className="z-[-1] relative group">
               <YellowCard mode={theme} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs bg-yellow-400 text-light-90 dark:text-dark-90 py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Yellow Card

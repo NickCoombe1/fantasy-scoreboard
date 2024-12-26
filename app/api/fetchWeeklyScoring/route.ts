@@ -26,7 +26,9 @@ export async function GET(request: Request) {
 
     const url = `https://draft.premierleague.com/api/event/${gameweekNumber}/live`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(
         `Failed to fetch scoring data for gameweek ${gameweekNumber}: ${response.statusText}`,

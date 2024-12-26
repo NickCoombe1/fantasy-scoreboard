@@ -3,7 +3,9 @@ import { GameStatusData } from "@/app/models/game";
 
 export async function GET() {
   try {
-    const response = await fetch("https://draft.premierleague.com/api/game");
+    const response = await fetch("https://draft.premierleague.com/api/game", {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch game status: ${response.statusText}`);

@@ -23,7 +23,9 @@ export async function GET(request: Request) {
 
     const url = `https://draft.premierleague.com/api/entry/${teamIDNumber}/event/${gameweekNumber}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(
         `Failed to fetch team data for team ${teamIDNumber}, gameweek ${gameweekNumber}: ${response.statusText}`,

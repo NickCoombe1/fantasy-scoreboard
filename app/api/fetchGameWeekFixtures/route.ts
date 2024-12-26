@@ -15,6 +15,9 @@ export async function GET(request: Request) {
   try {
     const response = await fetch(
       `https://draft.premierleague.com/api/event/${gameweek}/fixtures`,
+      {
+        cache: "no-store",
+      },
     );
 
     if (!response.ok) {

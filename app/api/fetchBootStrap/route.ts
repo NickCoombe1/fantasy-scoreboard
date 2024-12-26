@@ -5,7 +5,9 @@ export async function GET() {
   const url = "https://draft.premierleague.com/api/bootstrap-static";
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(`Failed to fetch bootstrap data: ${response.statusText}`);
     }
