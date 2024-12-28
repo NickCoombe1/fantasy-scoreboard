@@ -15,6 +15,7 @@ import { PlayerDataResponse } from "@/app/api/fetchWeeklyScoring/route";
 export interface ScoringData {
   totalPoints: number;
   picks: PlayerPick[];
+  playersPlayed: number;
 }
 
 export async function GET(request: Request) {
@@ -76,11 +77,12 @@ async function processTeamData(
     gameweekFixtureData,
   );
   const sortedTeam = calculateAutoSubs(picks);
-  const totalPoints = picks.reduce(
-    (acc, pick) => acc + (pick.isSub ? 0 : pick.points),
+  const totalPoints = sortedTeam.reduce((acc, pick) => acc + pick.points, 0);
+  const playersPlayed = sortedTeam.reduce(
+    (acc, pick) => acc + (pick.hasPlayed && !pick.isSub ? 1 : 0),
     0,
   );
-  return { picks: sortedTeam, totalPoints };
+  return { picks: sortedTeam, totalPoints, playersPlayed };
 }
 
 function mapBootstrapData(

@@ -1,25 +1,16 @@
 import ScoreboardHeaderVersus from "@/app/components/scoring/scoreboardHeaderVersus";
 import ScoreBoard from "@/app/components/scoring/scoreboard";
 import React, { useState } from "react";
-import { PlayerPick } from "@/app/models/playerPick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { LeagueEntry } from "@/app/models/league";
+import { ScoringData } from "@/app/api/fetchScoringData/route";
 
 interface MatchupProps {
-  team: {
-    entry_name: string;
-  };
-  opponent: {
-    entry_name: string;
-  };
-  teamScoring: {
-    totalPoints: number;
-    picks: PlayerPick[];
-  };
-  opponentScoring: {
-    totalPoints: number;
-    picks: PlayerPick[];
-  };
+  team: LeagueEntry;
+  opponent: LeagueEntry;
+  teamScoring: ScoringData;
+  opponentScoring: ScoringData;
 }
 
 const Matchup: React.FC<MatchupProps> = ({
@@ -38,6 +29,7 @@ const Matchup: React.FC<MatchupProps> = ({
           <ScoreboardHeaderVersus
             teamName={team.entry_name}
             totalPoints={teamScoring.totalPoints}
+            playersPlayed={teamScoring.playersPlayed}
             alignPoints="right"
           />
           <div className="dark:text-dark-90 text-light-90 font-semibold text-base leading-[.875rem] mt-5 md:hidden">
@@ -46,6 +38,7 @@ const Matchup: React.FC<MatchupProps> = ({
           <ScoreboardHeaderVersus
             teamName={opponent.entry_name}
             totalPoints={opponentScoring.totalPoints}
+            playersPlayed={teamScoring.playersPlayed}
             alignPoints="left"
           />
         </div>
@@ -55,6 +48,7 @@ const Matchup: React.FC<MatchupProps> = ({
             <ScoreboardHeaderVersus
               teamName={team.entry_name}
               totalPoints={teamScoring.totalPoints}
+              playersPlayed={teamScoring.playersPlayed}
               alignPoints="right"
             />
           </div>
@@ -68,6 +62,7 @@ const Matchup: React.FC<MatchupProps> = ({
             <ScoreboardHeaderVersus
               teamName={opponent.entry_name}
               totalPoints={opponentScoring.totalPoints}
+              playersPlayed={teamScoring.playersPlayed}
               alignPoints="left"
             />
           </div>

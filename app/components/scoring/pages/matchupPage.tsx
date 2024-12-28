@@ -28,6 +28,7 @@ export default function MatchupPage({
             <ScoreboardHeaderVersus
               teamName={team.entry_name}
               totalPoints={teamScoringData.totalPoints}
+              playersPlayed={teamScoringData.playersPlayed}
               alignPoints={"right"}
             />
             <div
@@ -40,6 +41,7 @@ export default function MatchupPage({
             <ScoreboardHeaderVersus
               teamName={opponent.entry_name}
               totalPoints={opponentScoringData.totalPoints}
+              playersPlayed={opponentScoringData.playersPlayed}
               alignPoints={"left"}
             />
           </div>
@@ -49,6 +51,7 @@ export default function MatchupPage({
               <ScoreboardHeaderVersus
                 teamName={team.entry_name}
                 totalPoints={teamScoringData.totalPoints}
+                playersPlayed={teamScoringData.playersPlayed}
                 alignPoints={"right"}
               />
             </div>
@@ -66,6 +69,7 @@ export default function MatchupPage({
               <ScoreboardHeaderVersus
                 teamName={opponent.entry_name}
                 totalPoints={opponentScoringData.totalPoints}
+                playersPlayed={opponentScoringData.playersPlayed}
                 alignPoints={"left"}
               />
             </div>
