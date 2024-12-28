@@ -11,6 +11,7 @@ import { PlayerPick } from "@/app/models/playerPick";
 import RedCard from "@/app/components/svgs/redCard";
 import YellowCard from "@/app/components/svgs/yellowCard";
 import { useTheme } from "@/app/hooks/getTheme";
+import getElementTypeShortName from "@/app/hooks/displayElementType";
 
 type PlayerPickCardProps = {
   pick: PlayerPick;
@@ -28,7 +29,12 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
     >
       <div className="self-stretch h-[27px] justify-between items-center inline-flex">
         <div className="text-center items-center text-light-90 dark:text-dark-90 text-base md:text-lg font-medium font-roobert leading-[.9rem] md:leading-none flex gap-2">
-          {pick.name}
+          <div className="flex items-center gap-2">
+            <span className="text-light-60 dark:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-[0.675rem] tracking-tight md:leading-3 md:tracking-wide">
+              {getElementTypeShortName(pick.fieldPosition)}
+            </span>
+            {pick.name}
+          </div>
           {pick.willBeAutosubbed && (
             <div className="z-[-1] relative group">
               <FontAwesomeIcon icon={faArrowRightArrowLeft} />
