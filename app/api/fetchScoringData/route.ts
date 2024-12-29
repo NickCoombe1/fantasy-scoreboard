@@ -77,7 +77,10 @@ async function processTeamData(
     gameweekFixtureData,
   );
   const sortedTeam = calculateAutoSubs(picks);
-  const totalPoints = sortedTeam.reduce((acc, pick) => acc + pick.points, 0);
+  const totalPoints = sortedTeam.reduce(
+    (acc, pick) => acc + (pick.isSub ? 0 : pick.points),
+    0,
+  );
   const playersPlayed = sortedTeam.reduce(
     (acc, pick) => acc + (pick.hasPlayed && !pick.isSub ? 1 : 0),
     0,
