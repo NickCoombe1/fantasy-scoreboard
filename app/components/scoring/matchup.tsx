@@ -38,7 +38,7 @@ const Matchup: React.FC<MatchupProps> = ({
           <ScoreboardHeaderVersus
             teamName={opponent.entry_name}
             totalPoints={opponentScoring.totalPoints}
-            playersPlayed={teamScoring.playersPlayed}
+            playersPlayed={opponentScoring.playersPlayed}
             alignPoints="left"
           />
         </div>
@@ -62,7 +62,7 @@ const Matchup: React.FC<MatchupProps> = ({
             <ScoreboardHeaderVersus
               teamName={opponent.entry_name}
               totalPoints={opponentScoring.totalPoints}
-              playersPlayed={teamScoring.playersPlayed}
+              playersPlayed={opponentScoring.playersPlayed}
               alignPoints="left"
             />
           </div>
