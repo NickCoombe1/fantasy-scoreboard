@@ -27,7 +27,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
       className={`self-stretch ${isExpanded ? "pt-3 pb-6 gap-6" : "py-3 gap-2.5"}  border-b border-[#040404]/20 dark:border-white/20 flex-col justify-start items-start flex`}
       onClick={toggleDetails}
     >
-      <div className="self-stretch h-[27px] justify-between items-center inline-flex">
+      <div className="self-stretch h-[27px] justify-between items-center inline-flex ">
         <div className="text-center items-center text-light-90 dark:text-dark-90 text-base md:text-lg font-medium font-roobert leading-[.9rem] md:leading-none flex gap-2">
           <div className="flex items-center gap-2">
             <span className="text-light-60 dark:text-dark-60 text-xs md:text-sm font-medium font-roobertMono uppercase leading-[0.675rem] tracking-tight md:leading-3 md:tracking-wide">
@@ -36,7 +36,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             {pick.name}
           </div>
           {pick.willBeAutosubbed && (
-            <div className="z-[-1] relative group">
+            <div className="z-[1] relative group">
               <FontAwesomeIcon icon={faArrowRightArrowLeft} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs dark:bg-white dark:text-black bg-black text-white py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Autosubbed
@@ -44,7 +44,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             </div>
           )}
           {pick.gameStatus.isInProgress && pick.wasSubbedOn && (
-            <div className="z-[-1] relative group">
+            <div className="z-[1] relative group">
               <FontAwesomeIcon icon={faPersonRunning} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs dark:bg-white dark:text-black bg-black text-white py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 On the Pitch
@@ -55,7 +55,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             !pick.isSub &&
             pick.hasPlayed &&
             pick.gameStatus.isFinished && (
-              <div className="z-[-1] relative group">
+              <div className="z-[1] relative group">
                 <FontAwesomeIcon
                   icon={faAward}
                   className="text-light-red dark:text-dark-red"
@@ -66,7 +66,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
               </div>
             )}
           {pick.yellowCarded && (
-            <div className="z-[-1] relative group">
+            <div className="z-[1] relative group">
               <YellowCard mode={theme} />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs bg-yellow-400 text-light-90 dark:text-dark-90 py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Yellow Card
@@ -74,7 +74,7 @@ const PlayerPickCard: React.FC<PlayerPickCardProps> = ({ pick }) => {
             </div>
           )}
           {pick.redCarded && (
-            <div className="relative group">
+            <div className="z-[1] relative group">
               <RedCard />
               <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 text-xs bg-red-500 text-light-90 dark:text-dark-90 py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-lg whitespace-nowrap">
                 Red Card

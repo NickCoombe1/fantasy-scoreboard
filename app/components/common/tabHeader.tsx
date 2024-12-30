@@ -7,7 +7,7 @@ interface TabHeaderProps {
 
 export default function TabHeader({ leagueName }: TabHeaderProps) {
   return (
-    <div className="sticky top-0 md:z-[1000] md:top-[1.5rem] w-full md:w-auto md:px-1 px-1 pb-1 md:py-1 mt-[-2px] bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center inline-flex">
+    <div className="sticky top-0 z-[2] md:z-[1000] md:top-[1.5rem] w-full md:w-auto md:px-1 px-1 pb-1 md:py-1 mt-[-2px] bg-black/5 dark:bg-black/20 rounded-b-lg md:rounded-lg shadow-custom-light-header-bottom md:shadow-custom-light-header backdrop-blur-2xl flex-col justify-start items-center inline-flex">
       <div className="text-center dark:text-dark-90 text-light-90 text-[1.625rem] font-semibold leading-normal my-4">
         {leagueName}
       </div>{" "}
