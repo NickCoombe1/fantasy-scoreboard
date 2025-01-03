@@ -10,8 +10,8 @@ export default async function ScoringPage({
 }: {
   params: { leagueID: string; teamID: string };
 }) {
-  const { leagueID, teamID } = await params;
-
+  const leagueID = (await params).leagueID;
+  const teamID = (await params).teamID;
   try {
     // Fetch data server-side
     const gameweekInfo = await fetchGameWeekDetails();
