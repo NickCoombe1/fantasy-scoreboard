@@ -47,13 +47,13 @@ export const metadata: Metadata = {
   title: "FS.",
   description: "",
 };
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const cookieStore = cookies();
-  const theme = cookieStore.get("theme")?.value || "light";
+  const theme = (await cookieStore).get("theme")?.value || "light";
   return (
     <html
       lang="en"

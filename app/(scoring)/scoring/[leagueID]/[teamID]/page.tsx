@@ -10,8 +10,8 @@ export default async function ScoringPage({
 }: {
   params: { leagueID: string; teamID: string };
 }) {
-  const leagueID = Number(params.leagueID);
-  const teamID = Number(params.teamID);
+  const { leagueID, teamID } = await params;
+
   try {
     // Fetch data server-side
     const gameweekInfo = await fetchGameWeekDetails();
@@ -19,13 +19,13 @@ export default async function ScoringPage({
       throw new Error("Failed to load gameweek data");
     }
 
-    const leagueData = await fetchLeagueData(leagueID);
+    const leagueData = await fetchLeagueData(Number(leagueID));
     if (!leagueData) {
       throw new Error("Failed to load league data");
     }
 
     const teamScoringData = await fetchTeamDetails(
-      teamID,
+      Number(teamID),
       gameweekInfo.current_event,
     );
     if (!teamScoringData) {
@@ -37,7 +37,7 @@ export default async function ScoringPage({
         leagueData={leagueData}
         teamScoringData={teamScoringData}
         gameweekInfo={gameweekInfo}
-        teamID={teamID}
+        teamID={Number(teamID)}
       />
     );
   } catch (error) {
