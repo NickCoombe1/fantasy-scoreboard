@@ -8,7 +8,7 @@ import ScoringTabs from "@/app/components/scoring/scoringTabs";
 export default async function ScoringPage({
   params,
 }: {
-  params: { leagueID: string; teamID: string };
+  params: Promise<{ leagueID: string; teamID: string }>;
 }) {
   const leagueID = (await params).leagueID;
   const teamID = (await params).teamID;
