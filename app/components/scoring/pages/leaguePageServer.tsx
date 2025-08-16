@@ -17,6 +17,14 @@ export default async function ScoringTabs({
     Awaited<ReturnType<typeof fetchTeamDetails>>
   > = {};
   for (const team of leagueData.league_entries) {
+    if (!team.entry_id) {
+      teamsScoringData[team.id] = {
+        totalPoints: 0,
+        picks: [],
+        playersPlayed: 0,
+      };
+      break;
+    }
     const teamScoring = await fetchTeamDetails(team.entry_id, gameweek);
     if (teamScoring) {
       teamsScoringData[team.id] = teamScoring;
