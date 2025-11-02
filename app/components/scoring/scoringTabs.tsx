@@ -9,9 +9,6 @@ import TabHeader from "@/app/components/common/tabHeader";
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
 );
-const MatchupPageServer = React.lazy(
-  () => import("@/app/components/scoring/pages/matchupPageServer"),
-);
 const LeaguePageServer = React.lazy(
   () => import("@/app/components/scoring/pages/leaguePageServer"),
 );
@@ -20,18 +17,14 @@ interface ScoringTabsProps {
   leagueData: LeagueData;
   teamScoringData: ScoringData;
   gameweekInfo: GameStatusData;
-  teamID: number;
+  teamID?: number;
 }
 
 export default function ScoringTabs({
   leagueData,
   teamScoringData,
   gameweekInfo,
-  teamID,
 }: ScoringTabsProps) {
-  const team = leagueData.league_entries.find(
-    (entry) => entry.entry_id === Number(teamID),
-  );
   return (
     <div className={"relative md:top-[-3.125rem]"}>
       <TabGroup className={"flex flex-col items-center gap-4 "}>
