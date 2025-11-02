@@ -38,12 +38,14 @@ export default function MatchupPage({
             >
               V
             </div>
-            <ScoreboardHeaderVersus
-              teamName={opponent.entry_name}
-              totalPoints={opponentScoringData.totalPoints}
-              playersPlayed={opponentScoringData.playersPlayed}
-              alignPoints={"left"}
-            />
+            {opponent.short_name !== "AV" && (
+              <ScoreboardHeaderVersus
+                teamName={opponent.entry_name}
+                totalPoints={opponentScoringData.totalPoints}
+                playersPlayed={opponentScoringData.playersPlayed}
+                alignPoints={"left"}
+              />
+            )}
           </div>
           {/* Desktop view */}
           <div className="flex flex-col items-start gap-6 w-full">
@@ -66,12 +68,14 @@ export default function MatchupPage({
           </div>
           <div className="flex flex-col items-start gap-6 w-full">
             <div className="hidden md:block w-full">
-              <ScoreboardHeaderVersus
-                teamName={opponent.entry_name}
-                totalPoints={opponentScoringData.totalPoints}
-                playersPlayed={opponentScoringData.playersPlayed}
-                alignPoints={"left"}
-              />
+              {opponent.short_name !== "AV" && (
+                <ScoreboardHeaderVersus
+                  teamName={opponent.entry_name}
+                  totalPoints={opponentScoringData.totalPoints}
+                  playersPlayed={opponentScoringData.playersPlayed}
+                  alignPoints={"left"}
+                />
+              )}
             </div>
             <ScoreBoard picks={opponentScoringData.picks || []} />
           </div>

@@ -22,7 +22,6 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const teamID = searchParams.get("teamID");
   const gameweek = searchParams.get("gameweek");
-
   if (!teamID || !gameweek) {
     return NextResponse.json(
       { error: "Both teamID and gameweek are required" },
