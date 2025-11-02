@@ -27,7 +27,7 @@ const Matchup: React.FC<MatchupProps> = ({
         {/* Mobile view */}
         <div className="md:hidden w-full flex gap justify-center gap-1">
           <ScoreboardHeaderVersus
-            teamName={team.entry_name}
+            teamName={team.entry_name ?? "AVERAGE"}
             totalPoints={teamScoring.totalPoints}
             playersPlayed={teamScoring.playersPlayed}
             alignPoints="right"
@@ -36,7 +36,7 @@ const Matchup: React.FC<MatchupProps> = ({
             V
           </div>
           <ScoreboardHeaderVersus
-            teamName={opponent.entry_name}
+            teamName={opponent.entry_name ?? "AVERAGE"}
             totalPoints={opponentScoring.totalPoints}
             playersPlayed={opponentScoring.playersPlayed}
             alignPoints="left"
@@ -46,7 +46,7 @@ const Matchup: React.FC<MatchupProps> = ({
         <div className="flex flex-col items-start gap-6 w-full">
           <div className="hidden md:block w-full">
             <ScoreboardHeaderVersus
-              teamName={team.entry_name}
+              teamName={team.entry_name ?? "AVERAGE"}
               totalPoints={teamScoring.totalPoints}
               playersPlayed={teamScoring.playersPlayed}
               alignPoints="right"
@@ -60,7 +60,7 @@ const Matchup: React.FC<MatchupProps> = ({
         <div className="flex flex-col items-start gap-6 w-full">
           <div className="hidden md:block w-full">
             <ScoreboardHeaderVersus
-              teamName={opponent.entry_name}
+              teamName={opponent.entry_name ?? "AVERAGE"}
               totalPoints={opponentScoring.totalPoints}
               playersPlayed={opponentScoring.playersPlayed}
               alignPoints="left"

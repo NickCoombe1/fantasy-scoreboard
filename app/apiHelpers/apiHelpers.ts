@@ -32,6 +32,9 @@ export const fetchTeamDetails = async (
   teamID: number,
   gameweek: number,
 ): Promise<ScoringData> => {
+  if (!teamID) {
+    throw new Response("Team ID required", { status: 404 });
+  }
   const response = await fetch(
     `${baseUrl}/api/fetchScoringData?teamID=${teamID}&gameweek=${gameweek}`,
   );
@@ -71,6 +74,9 @@ export const fetchWeeklyTeam = async (
   teamID: number,
   gameweek: number,
 ): Promise<FplTeamPicksResponse> => {
+  if (!teamID) {
+    throw new Response("Team ID required", { status: 404 });
+  }
   const response = await fetch(
     `${baseUrl}/api/fetchWeeklyTeam?teamID=${teamID}&gameweek=${gameweek}`,
   );

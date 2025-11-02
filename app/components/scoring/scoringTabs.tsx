@@ -65,7 +65,7 @@ export default function ScoringTabs({
                   />{" "}
                 </Suspense>
               </TabPanel>
-              <TabPanel>
+              {/* <TabPanel>
                 <Suspense
                   fallback={
                     <div className={"flex justify-center mt-8"}>
@@ -83,7 +83,7 @@ export default function ScoringTabs({
                     />
                   )}
                 </Suspense>
-              </TabPanel>
+              </TabPanel> */}
               <TabPanel>
                 {" "}
                 <Suspense

@@ -18,11 +18,23 @@ export default async function ScoringTabs({
   > = {};
   for (const team of leagueData.league_entries) {
     if (!team.entry_id) {
-      teamsScoringData[team.id] = {
-        totalPoints: 0,
-        picks: [],
-        playersPlayed: 0,
-      };
+      const allTeamScorings = Object.values(teamsScoringData);
+      if (allTeamScorings.length > 0) {
+        const avgTotalPoints =
+          allTeamScorings.reduce((sum, t) => sum + (t.totalPoints ?? 0), 0) /
+          allTeamScorings.length;
+
+        const avgPlayersPlayed =
+          allTeamScorings.reduce((sum, t) => sum + (t.playersPlayed ?? 0), 0) /
+          allTeamScorings.length;
+
+        teamsScoringData[team.id] = {
+          totalPoints: Math.round(avgTotalPoints),
+          playersPlayed: Math.round(avgPlayersPlayed),
+          picks: [],
+        };
+        team.entry_name = "poo";
+      }
       break;
     }
     const teamScoring = await fetchTeamDetails(team.entry_id, gameweek);
