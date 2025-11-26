@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
+import { TabGroup, TabPanel, TabPanels } from "@headlessui/react";
 import { LeagueData } from "@/app/models/league";
 import { GameStatusData } from "@/app/models/game";
 import { ScoringData } from "@/app/api/fetchScoringData/route";
-import { TabGroup, TabPanel, TabPanels } from "@headlessui/react";
 import LoadingSpinner from "@/app/components/common/loadingSpinner";
 import TabHeader from "@/app/components/common/tabHeader";
+import RefreshButton from "@/app/components/scoring/RefreshButton";
 
 const Scoring = React.lazy(
   () => import("@/app/components/scoring/pages/scoringPage"),
@@ -18,12 +19,15 @@ interface ScoringTabsProps {
   teamScoringData: ScoringData;
   gameweekInfo: GameStatusData;
   teamID?: number;
+  leagueID: number;
 }
 
 export default function ScoringTabs({
   leagueData,
   teamScoringData,
   gameweekInfo,
+  teamID,
+  leagueID,
 }: ScoringTabsProps) {
   return (
     <div className={"relative md:top-[-3.125rem]"}>
@@ -41,6 +45,11 @@ export default function ScoringTabs({
             </>
           )}
         </div>
+        {teamID && leagueID && (
+          <div className={"flex justify-center"}>
+            <RefreshButton leagueID={leagueID} teamID={teamID} />{" "}
+          </div>
+        )}
         <TabPanels className={"w-full"}>
           {leagueData && teamScoringData && gameweekInfo && (
             <>

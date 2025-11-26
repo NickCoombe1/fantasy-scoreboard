@@ -11,7 +11,9 @@ const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 export const fetchGameWeekDetails = async (): Promise<GameStatusData> => {
-  const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`);
+  const response = await fetch(`${baseUrl}/api/fetchGameWeekDetails`, {
+    cache: "no-store",
+  });
 
   if (response.ok) return response.json();
   throw new Error("Failed to fetch gameweek details");
@@ -22,7 +24,7 @@ export const fetchLeagueData = async (
 ): Promise<LeagueData> => {
   const response = await fetch(
     `${baseUrl}/api/fetchLeagueDetails?leagueID=${leagueID}`,
-    { next: { revalidate: 86400 } },
+    { cache: "no-store" },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch league data");
@@ -37,6 +39,7 @@ export const fetchTeamDetails = async (
   }
   const response = await fetch(
     `${baseUrl}/api/fetchScoringData?teamID=${teamID}&gameweek=${gameweek}`,
+    { cache: "no-store" },
   );
   if (response.ok) return response.json();
   throw new Error("Failed to fetch team details");
